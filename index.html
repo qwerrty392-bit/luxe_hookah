@@ -55,7 +55,7 @@
   }
   .btn:hover{background:var(--gold);color:var(--bg)}
   .btn-solid{background:var(--gold);color:var(--bg);border:none}
-  .btn-solid:hover{background:var(--gold-light);box-shadow:0 0 25px rgba(200,165,102,.4)}
+  .btn-solid:hover{background:var(--gold-light);box-shadow:0 0 25px rgba(200,165,102,.5)}
   
   .burger{display:none;flex-direction:column;gap:6px;cursor:pointer}
   .burger span{width:30px;height:1px;background:var(--gold);transition:0.3s}
@@ -136,23 +136,43 @@
   .price-list li{padding:14px 0;border-bottom:1px solid rgba(255,255,255,0.05);display:flex;align-items:center;gap:10px}
   .price-list li::before{content:'—';color:var(--gold);font-weight:bold}
   
-  /* CONTACT */
-  .contact-section{background:var(--bg-soft);border-top:1px solid var(--border)}
-  .contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:80px}
+  /* CONTACT & FORM (Улучшено) */
+  .contact-section{
+    background:var(--bg-soft);border-top:1px solid var(--border);position:relative;
+  }
+  .contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:stretch}
+  
+  .contact-info{
+    background:var(--card); padding:50px; border:1px solid var(--border);
+    display:flex; flex-direction:column; justify-content:center;
+    box-shadow:0 10px 30px rgba(0,0,0,0.2);
+  }
   .contact-info h2{font-size:clamp(2rem,4vw,3rem);margin-bottom:25px;font-weight:400}
   .contact-info p{color:var(--muted);margin-bottom:40px;font-weight:300}
   .contact-item{margin-bottom:25px;display:flex;align-items:center;gap:15px}
   .contact-item span{font-size:.85rem;letter-spacing:1px;text-transform:uppercase;color:var(--muted);width:120px;flex-shrink:0;font-weight:500}
   .contact-item a,.contact-item strong{font-family:'Playfair Display',serif;font-size:1.6rem;color:var(--gold)}
   
-  form{background:var(--card);padding:50px;border:1px solid var(--border)}
+  /* Форма теперь со свечением и яркой рамкой */
+  form{
+    background:var(--card); padding:50px; 
+    border:1px solid var(--gold); /* Золотая рамка */
+    box-shadow:0 0 30px rgba(200,165,102,0.15), inset 0 0 20px rgba(200,165,102,0.05); /* Свечение */
+    position:relative;
+  }
+  form::before{
+    content:'Оставить заявку';position:absolute;top:-15px;left:50%;transform:translateX(-50%);
+    background:var(--gold);color:var(--bg);font-size:.75rem;font-weight:600;
+    text-transform:uppercase;letter-spacing:2px;padding:5px 20px;
+  }
+  
   .field{margin-bottom:25px;position:relative}
   .field label{display:block;font-size:.75rem;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted);margin-bottom:10px;font-weight:500}
   .field input,.field select,.field textarea{
     width:100%;padding:15px 0;background:transparent;border:none;border-bottom:1px solid var(--border);
     color:var(--text);font-family:'Inter',sans-serif;font-size:1rem;outline:none;transition:.3s;font-weight:300;
   }
-  .field input:focus,.field select:focus,.field textarea:focus{border-color:var(--gold)}
+  .field input:focus,.field select:focus,.field textarea:focus{border-color:var(--gold); box-shadow: 0 1px 0 var(--gold);}
   .field select{cursor:pointer;color:var(--text)}
   .field select option{background:var(--bg);color:var(--text)}
   .field textarea{resize:none;min-height:80px}
@@ -167,16 +187,18 @@
   /* MODAL */
   .modal{position:fixed;inset:0;background:rgba(0,0,0,0.85);backdrop-filter:blur(5px);display:none;place-items:center;z-index:200}
   .modal.active{display:grid}
-  .modal-box{background:var(--card);padding:60px 40px;max-width:500px;width:90%;text-align:center;border:1px solid var(--gold)}
+  .modal-box{background:var(--card);padding:60px 40px;max-width:500px;width:90%;text-align:center;border:1px solid var(--gold); box-shadow:0 0 40px rgba(200,165,102,0.2);}
   .modal-box h3{font-size:2.2rem;color:var(--gold);margin-bottom:15px}
   .modal-box p{color:var(--muted);margin-bottom:30px;font-weight:300}
 
   /* MOBILE */
   @media(max-width:992px){
     .about-grid{grid-template-columns:1fr;gap:40px}
-    .contact-grid{grid-template-columns:1fr;gap:50px}
+    .contact-grid{grid-template-columns:1fr;gap:30px}
     .price-card.featured{transform:none}
     .price-card.featured:hover{transform:translateY(-5px)}
+    form{padding:40px 30px}
+    .contact-info{padding:40px 30px}
   }
   @media(max-width:768px){
     .nav-links{
@@ -188,7 +210,6 @@
     .nav .btn{display:none}
     .hero h1{font-size:2.8rem}
     section{padding:80px 0}
-    form{padding:30px}
     .about-stats{grid-template-columns:1fr}
   }
 </style>
@@ -267,13 +288,12 @@
       </div>
       <div class="service-card">
         <h3>Частные вечеринки</h3>
-        <p>Закрытые мероприятия на виллах, в пентхаусах или ресторанах. Полная конфиденциальность и VIP-обслуживание.</p>
+        <p>Выездное обслуживание на коттеджах, загородных домах, природе или в любом удобном для вас месте. Полная конфиденциальность и VIP-обслуживание.</p>
       </div>
     </div>
   </div>
 </section>
 
-<!-- БЛОК ЦЕН С ПЕРЕКЛЮЧАТЕЛЕМ -->
 <section id="prices" style="background:var(--bg-soft); border-top:1px solid var(--border); border-bottom:1px solid var(--border);">
   <div class="container">
     <div class="section-title">
@@ -281,13 +301,11 @@
       <h2>Выберите свой <span class="gold-text">формат</span></h2>
     </div>
 
-    <!-- Кнопки переключения -->
     <div class="price-tabs">
       <button class="tab-btn active" onclick="showPrices('catering')">С мастером (под ключ)</button>
       <button class="tab-btn" onclick="showPrices('rental')">Прокат без мастера</button>
     </div>
 
-    <!-- Вкладка 1: Кейтеринг с мастером -->
     <div class="prices active" id="tab-catering">
       <div class="price-card">
         <h3>Elegance</h3>
@@ -325,7 +343,6 @@
       </div>
     </div>
 
-    <!-- Вкладка 2: Прокат без мастера -->
     <div class="prices" id="tab-rental">
       <div class="price-card" style="grid-column: 1 / -1; max-width: 600px; margin: 0 auto;">
         <h3>Прокат оборудования</h3>
@@ -346,6 +363,8 @@
 
 <section class="contact-section" id="contact">
   <div class="container contact-grid">
+    
+    <!-- Блок контактов (сделали карточкой) -->
     <div class="contact-info">
       <span class="subtitle">Свяжитесь с нами</span>
       <h2>Организуем <span class="gold-text">безупречный</span> отдых</h2>
@@ -365,6 +384,7 @@
       </div>
     </div>
     
+    <!-- Форма заявки со свечением -->
     <form id="leadForm">
       <div class="field">
         <label>Ваше имя</label>
@@ -386,6 +406,7 @@
       </div>
       <button type="submit" class="btn btn-solid">Отправить заявку</button>
     </form>
+    
   </div>
 </section>
 
@@ -419,12 +440,9 @@
 
   // Переключение тарифов (Табы)
   function showPrices(tabName) {
-    // Скрываем все вкладки
     document.querySelectorAll('.prices').forEach(el => el.classList.remove('active'));
-    // Убираем активный класс у всех кнопок
     document.querySelectorAll('.tab-btn').forEach(el => el.classList.remove('active'));
     
-    // Показываем нужную вкладку и делаем кнопку активной
     document.getElementById('tab-' + tabName).classList.add('active');
     event.currentTarget.classList.add('active');
   }
