@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LUXE HOOKAH | Премиальный кейтеринг и аренда оборудования</title>
+<meta name="description" content="Эксклюзивная аренда кальянного оборудования и кейтеринг под ключ. Более 5 лет опыта. Личный мастер, безупречный сервис.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0a0a0c;
+    --bg-soft:#121216;
+    --card:#16161b;
+    --gold:#c9a050;
+    --gold-light:#e8cd8d;
+    --text:#eaeaea;
+    --muted:#8a8a94;
+    --border:rgba(201,160,80,0.15);
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    font-family:'Montserrat',sans-serif;
+    background:var(--bg);color:var(--text);line-height:1.7;overflow-x:hidden;
+    -webkit-font-smoothing: antialiased;
+  }
+  a{color:inherit;text-decoration:none}
+  .container{width:min(1200px,90%);margin-inline:auto}
+
+  /* TYPOGRAPHY */
+  h1,h2,h3,.logo{font-family:'Cormorant Garamond',serif;font-weight:600;letter-spacing:.5px}
+  .gold-text{color:var(--gold)}
+  .subtitle{font-size:.75rem;letter-spacing:4px;text-transform:uppercase;color:var(--gold);display:block;margin-bottom:15px}
+
+  /* HEADER */
+  header{
+    position:fixed;top:0;left:0;right:0;z-index:100;
+    background:rgba(10,10,12,.9);backdrop-filter:blur(15px);
+    border-bottom:1px solid var(--border);transition:0.3s;
+  }
+  .nav{display:flex;align-items:center;justify-content:space-between;padding:20px 0;gap:20px}
+  .logo{font-size:1.8rem;font-weight:700;letter-spacing:2px}
+  .logo span{color:var(--gold);font-style:italic}
+  .nav-links{display:flex;gap:35px;font-size:.8rem;letter-spacing:1.5px;text-transform:uppercase}
+  .nav-links a{color:var(--text);transition:.3s;position:relative;padding-bottom:5px}
+  .nav-links a::after{content:'';position:absolute;bottom:0;left:0;width:0;height:1px;background:var(--gold);transition:.3s}
+  .nav-links a:hover::after{width:100%}
+  
+  .btn{
+    display:inline-flex;align-items:center;justify-content:center;padding:16px 36px;
+    font-family:'Montserrat',sans-serif;font-size:.8rem;font-weight:500;letter-spacing:2px;text-transform:uppercase;
+    background:transparent;color:var(--gold);border:1px solid var(--gold);cursor:pointer;transition:.4s;position:relative;overflow:hidden;
+  }
+  .btn:hover{background:var(--gold);color:var(--bg)}
+  .btn-solid{background:var(--gold);color:var(--bg);border:none}
+  .btn-solid:hover{background:var(--gold-light);box-shadow:0 0 20px rgba(201,160,80,.4)}
+  
+  .burger{display:none;flex-direction:column;gap:6px;cursor:pointer}
+  .burger span{width:30px;height:1px;background:var(--gold);transition:0.3s}
+
+  /* HERO */
+  .hero{
+    min-height:100vh;display:flex;align-items:center;position:relative;
+    background:linear-gradient(rgba(10,10,12,0.75), rgba(10,10,12,0.95)), url('https://images.unsplash.com/photo-1584242616080-2314a324f291?auto=format&fit=crop&w=1920&q=80') center/cover no-repeat;
+    padding:150px 0 100px;
+  }
+  .hero-content{max-width:800px}
+  .hero h1{font-size:clamp(3rem,6vw,5.5rem);line-height:1.1;margin-bottom:25px;font-weight:400}
+  .hero p{font-size:1.05rem;color:var(--muted);margin-bottom:45px;max-width:550px;font-weight:300;line-height:1.8}
+  .hero-actions{display:flex;gap:20px;flex-wrap:wrap}
+  
+  /* ABOUT / FEATURES */
+  .about-section{background:var(--bg-soft);padding:100px 0;border-bottom:1px solid var(--border)}
+  .about-grid{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center}
+  .about-text h2{font-size:clamp(2rem,4vw,3rem);margin-bottom:25px;font-weight:400}
+  .about-text p{color:var(--muted);font-weight:300;margin-bottom:20px;font-size:1rem}
+  .about-stats{display:grid;grid-template-columns:1fr 1fr;gap:30px}
+  .stat-item{border-left:2px solid var(--gold);padding-left:20px}
+  .stat-item .num{font-family:'Cormorant Garamond',serif;font-size:3rem;color:var(--gold);line-height:1;margin-bottom:5px}
+  .stat-item p{font-size:.85rem;color:var(--muted);letter-spacing:1px;text-transform:uppercase}
+
+  /* SECTIONS */
+  section{padding:120px 0}
+  .section-title{text-align:center;margin-bottom:70px}
+  .section-title h2{font-size:clamp(2rem,4vw,3.5rem);margin-bottom:20px;font-weight:400}
+  .section-title p{color:var(--muted);max-width:600px;margin-inline:auto;font-weight:300}
+
+  /* SERVICES */
+  .services-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:30px}
+  .service-card{
+    background:var(--card);border:1px solid var(--border);padding:50px 40px;
+    transition:.5s;position:relative;overflow:hidden;display:flex;flex-direction:column;
+  }
+  .service-card::before{
+    content:'';position:absolute;top:0;left:0;width:100%;height:2px;
+    background:linear-gradient(90deg, transparent, var(--gold), transparent);
+    transform:scaleX(0);transition:.5s;
+  }
+  .service-card:hover{transform:translateY(-10px);border-color:rgba(201,160,80,0.4);background:#1a1a20}
+  .service-card:hover::before{transform:scaleX(1)}
+  .service-card h3{font-size:1.8rem;margin-bottom:20px;font-weight:400}
+  .service-card p{color:var(--muted);font-size:.9rem;font-weight:300;flex:1}
+  
+  /* PRICES */
+  .prices{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:30px;align-items:center}
+  .price-card{
+    background:var(--card);border:1px solid var(--border);padding:50px 40px;text-align:center;
+    position:relative;
+  }
+  .price-card.featured{
+    border-color:var(--gold);background:linear-gradient(180deg, #16161b, rgba(201,160,80,0.05));transform:scale(1.05);z-index:2;
+  }
+  .price-card.featured::after{
+    content:'Выбор экспертов';position:absolute;top:-15px;left:50%;transform:translateX(-50%);
+    background:var(--gold);color:var(--bg);font-size:.7rem;font-weight:600;text-transform:uppercase;letter-spacing:2px;padding:5px 20px;
+  }
+  .price-card h3{font-size:1.6rem;margin-bottom:15px;font-weight:400}
+  .price-card .price{font-family:'Cormorant Garamond',serif;font-size:3rem;color:var(--gold);margin-bottom:30px;line-height:1}
+  .price-card .price small{font-family:'Montserrat',sans-serif;font-size:.8rem;color:var(--muted);letter-spacing:1px}
+  .price-list{list-style:none;text-align:left;margin-bottom:40px;font-size:.85rem;color:var(--muted)}
+  .price-list li{padding:12px 0;border-bottom:1px solid rgba(255,255,255,0.05);display:flex;align-items:center;gap:10px}
+  .price-list li::before{content:'—';color:var(--gold)}
+  
+  /* CONTACT */
+  .contact-section{background:var(--bg-soft);border-top:1px solid var(--border)}
+  .contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:80px}
+  .contact-info h2{font-size:clamp(2rem,4vw,3rem);margin-bottom:25px;font-weight:400}
+  .contact-info p{color:var(--muted);margin-bottom:40px;font-weight:300}
+  .contact-item{margin-bottom:25px;display:flex;align-items:center;gap:15px}
+  .contact-item span{font-size:.9rem;letter-spacing:1px;text-transform:uppercase;color:var(--muted);width:120px;flex-shrink:0}
+  .contact-item a,.contact-item strong{font-family:'Cormorant Garamond',serif;font-size:1.5rem;color:var(--gold)}
+  
+  form{background:var(--card);padding:50px;border:1px solid var(--border)}
+  .field{margin-bottom:25px;position:relative}
+  .field label{display:block;font-size:.75rem;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted);margin-bottom:10px}
+  .field input,.field select,.field textarea{
+    width:100%;padding:15px 0;background:transparent;border:none;border-bottom:1px solid var(--border);
+    color:var(--text);font-family:'Montserrat',sans-serif;font-size:1rem;outline:none;transition:.3s;
+  }
+  .field input:focus,.field select:focus,.field textarea:focus{border-color:var(--gold)}
+  .field select{cursor:pointer;color:var(--text)}
+  .field select option{background:var(--bg);color:var(--text)}
+  .field textarea{resize:none;min-height:80px}
+  form .btn{width:100%;margin-top:10px}
+
+  /* FOOTER */
+  footer{padding:40px 0;text-align:center;border-top:1px solid var(--border);font-size:.8rem;color:var(--muted);letter-spacing:1px}
+  .legal-info{margin-top:25px;font-size:.75rem;color:#666;line-height:1.8}
+  .legal-info p{margin-bottom:5px}
+  .legal-info strong{color:var(--gold);font-weight:500}
+
+  /* MODAL */
+  .modal{position:fixed;inset:0;background:rgba(0,0,0,0.85);backdrop-filter:blur(5px);display:none;place-items:center;z-index:200}
+  .modal.active{display:grid}
+  .modal-box{background:var(--card);padding:60px 40px;max-width:500px;width:90%;text-align:center;border:1px solid var(--gold)}
+  .modal-box h3{font-size:2rem;color:var(--gold);margin-bottom:15px}
+  .modal-box p{color:var(--muted);margin-bottom:30px;font-weight:300}
+
+  /* MOBILE */
+  @media(max-width:992px){
+    .about-grid{grid-template-columns:1fr;gap:40px}
+    .contact-grid{grid-template-columns:1fr;gap:50px}
+    .price-card.featured{transform:none}
+  }
+  @media(max-width:768px){
+    .nav-links{
+      position:fixed;top:80px;left:0;right:0;background:var(--bg-soft);flex-direction:column;
+      padding:30px;gap:20px;text-align:center;transform:translateY(-150%);transition:.4s;border-bottom:1px solid var(--border);
+    }
+    .nav-links.open{transform:translateY(0)}
+    .burger{display:flex}
+    .nav .btn{display:none}
+    .hero h1{font-size:2.8rem}
+    section{padding:80px 0}
+    form{padding:30px}
+    .about-stats{grid-template-columns:1fr}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="container nav">
+    <div class="logo">LUXE <span>HOOKAH</span></div>
+    <nav class="nav-links" id="navLinks">
+      <a href="#about">О нас</a>
+      <a href="#services">Услуги</a>
+      <a href="#prices">Пакеты</a>
+      <a href="#contact">Контакты</a>
+    </nav>
+    <a href="#contact" class="btn">Забронировать</a>
+    <div class="burger" id="burger"><span></span><span></span><span></span></div>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="container hero-content">
+    <span class="subtitle">Искусство премиального отдыха</span>
+    <h1>Эксклюзивный <br><span class="gold-text">кальянный кейтеринг</span></h1>
+    <p>Создаем атмосферу роскоши на ваших мероприятиях. Премиальное оборудование ручной работы и безупречный сервис от личных мастеров.</p>
+    <div class="hero-actions">
+      <a href="#contact" class="btn btn-solid">Обсудить мероприятие</a>
+      <a href="#prices" class="btn">Смотреть пакеты</a>
+    </div>
+  </div>
+</section>
+
+<section class="about-section" id="about">
+  <div class="container about-grid">
+    <div class="about-text">
+      <span class="subtitle">Наш опыт</span>
+      <h2>Более 5 лет создаем <span class="gold-text">безупречный отдых</span></h2>
+      <p>Мы на рынке кальянного кейтеринга уже более 5 лет. За это время мы организовали сотни мероприятий — от камерных семейных праздников до масштабных закрытых вечеринок и свадеб.</p>
+      <p>Наш подход — это сочетание безупречного вкуса, строгих стандартов сервиса и полной конфиденциальности. Мы не просто привозим оборудование, мы создаем атмосферу, в которой каждая деталь работает на ваш комфорт.</p>
+    </div>
+    <div class="about-stats">
+      <div class="stat-item">
+        <div class="num">5+</div>
+        <p>Лет опыта</p>
+      </div>
+      <div class="stat-item">
+        <div class="num">500+</div>
+        <p>Проведенных событий</p>
+      </div>
+      <div class="stat-item">
+        <div class="num">100%</div>
+        <p>Конфиденциальность</p>
+      </div>
+      <div class="stat-item">
+        <div class="num">VIP</div>
+        <p>Уровень сервиса</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="services">
+  <div class="container">
+    <div class="section-title">
+      <span class="subtitle">Форматы</span>
+      <h2>События, которые мы <span class="gold-text">обслуживаем</span></h2>
+    </div>
+    <div class="services-grid">
+      <div class="service-card">
+        <h3>Свадьбы</h3>
+        <p>Элегантная зона отдыха, которая станет изюминкой вечера. Мастера работают незаметно, создавая комфорт для каждого гостя.</p>
+      </div>
+      <div class="service-card">
+        <h3>Корпоративы</h3>
+        <p>Статусный отдых для вашей команды и партнеров. Индивидуальный подход, премиальное оборудование и высочайший уровень сервиса.</p>
+      </div>
+      <div class="service-card">
+        <h3>Частные вечеринки</h3>
+        <p>Закрытые мероприятия на виллах, в пентхаусах или ресторанах. Полная конфиденциальность и VIP-обслуживание.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="prices" style="background:var(--bg-soft); border-top:1px solid var(--border); border-bottom:1px solid var(--border);">
+  <div class="container">
+    <div class="section-title">
+      <span class="subtitle">Стоимость</span>
+      <h2>Выберите свой <span class="gold-text">статус</span></h2>
+    </div>
+    <div class="prices">
+      <div class="price-card">
+        <h3>Elegance</h3>
+        <div class="price">от 15 000 <small>BYN</small></div>
+        <ul class="price-list">
+          <li>До 4 часов работы</li>
+          <li>2 кальяна ручной работы</li>
+          <li>Расходные материалы</li>
+          <li>1 кальянный мастер</li>
+        </ul>
+        <a href="#contact" class="btn" style="width:100%;">Выбрать</a>
+      </div>
+      <div class="price-card featured">
+        <h3>Exclusive</h3>
+        <div class="price">от 30 000 <small>BYN</small></div>
+        <ul class="price-list">
+          <li>До 6 часов работы</li>
+          <li>4 кальяна премиум-класса</li>
+          <li>Индивидуальное обслуживание гостей</li>
+          <li>2 кальянных мастера</li>
+          <li>Фотозона с кальянами</li>
+        </ul>
+        <a href="#contact" class="btn btn-solid" style="width:100%;">Выбрать</a>
+      </div>
+      <div class="price-card">
+        <h3>Bespoke</h3>
+        <div class="price">Индивидуально</div>
+        <ul class="price-list">
+          <li>Весь вечер без ограничений</li>
+          <li>Любое количество кальянов</li>
+          <li>Команда мастеров</li>
+          <li>Личный менеджер проекта</li>
+        </ul>
+        <a href="#contact" class="btn" style="width:100%;">Связаться</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="contact-section" id="contact">
+  <div class="container contact-grid">
+    <div class="contact-info">
+      <span class="subtitle">Свяжитесь с нами</span>
+      <h2>Организуем <span class="gold-text">безупречный</span> отдых</h2>
+      <p>Оставьте заявку, и ваш личный менеджер свяжется с вами в течение 15 минут для обсуждения деталей мероприятия.</p>
+      
+      <div class="contact-item">
+        <span>Телефон</span>
+        <a href="tel:+375256439632">+375 (25) 643-96-32</a>
+      </div>
+      <div class="contact-item">
+        <span>Email</span>
+        <a href="mailto:vip@luxehookah.by">vip@luxehookah.by</a>
+      </div>
+      <div class="contact-item">
+        <span>География</span>
+        <strong>Минск и область</strong>
+      </div>
+    </div>
+    
+    <form id="leadForm">
+      <div class="field">
+        <label>Ваше имя</label>
+        <input type="text" required placeholder="Александр">
+      </div>
+      <div class="field">
+        <label>Телефон</label>
+        <input type="tel" id="phone" required placeholder="+375 (__) ___-__-__">
+      </div>
+      <div class="field">
+        <label>Формат мероприятия</label>
+        <select>
+          <option>Свадьба</option>
+          <option>Корпоратив</option>
+          <option>Частная вечеринка</option>
+          <option>Другое</option>
+        </select>
+      </div>
+      <button type="submit" class="btn btn-solid">Отправить заявку</button>
+    </form>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div style="font-family:'Cormorant Garamond',serif; font-size:1.5rem; color:var(--gold); margin-bottom:15px;">LUXE HOOKAH</div>
+    <p>© 2026 Все права защищены.</p>
+    
+    <div class="legal-info">
+      <p>ИП <strong>Салацкий Владислав Владимирович</strong></p>
+      <p>УНП: <strong>693462668</strong></p>
+      <p>Контактный телефон: <strong>+375 (25) 643-96-32</strong></p>
+    </div>
+  </div>
+</footer>
+
+<div class="modal" id="modal">
+  <div class="modal-box">
+    <h3>Заявка принята</h3>
+    <p>Наш менеджер свяжется с вами в ближайшее время для обсуждения деталей вашего мероприятия.</p>
+    <button class="btn btn-solid" id="closeModal" style="width:100%;">Отлично</button>
+  </div>
+</div>
+
+<script>
+  // Мобильное меню
+  const burger = document.getElementById('burger');
+  const navLinks = document.getElementById('navLinks');
+  burger.addEventListener('click', () => navLinks.classList.toggle('open'));
+  navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => navLinks.classList.remove('open')));
+
+  // Форма
+  const form = document.getElementById('leadForm');
+  const modal = document.getElementById('modal');
+  form.addEventListener('submit', e => {
+    e.preventDefault();
+    modal.classList.add('active');
+    form.reset();
+  });
+  document.getElementById('closeModal').addEventListener('click', () => modal.classList.remove('active'));
+
+  // Маска телефона
+  const phone = document.getElementById('phone');
+  phone.addEventListener('input', () => {
+    let v = phone.value.replace(/\D/g, '');
+    if (!v.startsWith('375')) v = '375' + v;
+    let out = '+375';
+    if (v.length > 3) out += ' (' + v.slice(3,5);
+    if (v.length >= 6) out += ') ' + v.slice(5,8);
+    if (v.length >= 9) out += '-' + v.slice(8,10);
+    if (v.length >= 11) out += '-' + v.slice(10,12);
+    phone.value = out;
+  });
+</script>
+</body>
+</html>
