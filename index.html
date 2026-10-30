@@ -23,11 +23,12 @@
   .gold-text{color:var(--gold)}
   .subtitle{font-size:.75rem;letter-spacing:4px;text-transform:uppercase;color:var(--gold);display:block;margin-bottom:15px;font-weight:500}
 
+  /* HEADER */
   header{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(13,17,16,.85);backdrop-filter:blur(15px);border-bottom:1px solid var(--border);transition:0.3s;}
   .nav{display:flex;align-items:center;justify-content:space-between;padding:20px 0;gap:20px}
   .logo{font-size:1.8rem;font-weight:700;letter-spacing:2px}
   .logo span{color:var(--gold);font-style:italic}
-  .nav-links{display:flex;gap:35px;font-size:.8rem;letter-spacing:1.5px;text-transform:uppercase;font-weight:500}
+  .nav-links{display:flex;gap:25px;font-size:.8rem;letter-spacing:1.5px;text-transform:uppercase;font-weight:500}
   .nav-links a{color:var(--text);transition:.3s;position:relative;padding-bottom:5px}
   .nav-links a::after{content:'';position:absolute;bottom:0;left:0;width:0;height:1px;background:var(--gold);transition:.3s}
   .nav-links a:hover::after{width:100%}
@@ -40,128 +41,41 @@
   .burger{display:none;flex-direction:column;gap:6px;cursor:pointer}
   .burger span{width:30px;height:1px;background:var(--gold);transition:0.3s}
 
-  /* HERO С ДЫМОМ (CSS) */
+  /* HERO */
   .hero{min-height:100vh;display:flex;align-items:center;position:relative;background:linear-gradient(rgba(13,17,16,0.85), rgba(13,17,16,0.95)), url('https://images.unsplash.com/photo-1584242616080-2314a324f291?auto=format&fit=crop&w=1920&q=80') center/cover no-repeat;padding:150px 0 100px;overflow:hidden;}
-  .smoke-container{position: absolute;inset: 0;pointer-events: none;z-index: 1;overflow: hidden;}
-  .smoke{position: absolute;bottom: -100px;width: 400px;height: 400px;background: radial-gradient(circle, rgba(200,165,102,0.15) 0%, rgba(200,165,102,0) 70%);border-radius: 50%;animation: rise 15s infinite ease-in;filter: blur(20px);}
-  .smoke:nth-child(1) { left: 5%; animation-duration: 12s; animation-delay: 0s; }
-  .smoke:nth-child(2) { left: 25%; animation-duration: 18s; animation-delay: 2s; width: 500px; height: 500px; }
-  .smoke:nth-child(3) { left: 50%; animation-duration: 14s; animation-delay: 5s; }
-  .smoke:nth-child(4) { left: 75%; animation-duration: 20s; animation-delay: 1s; width: 600px; height: 600px; }
-  .smoke:nth-child(5) { left: 90%; animation-duration: 16s; animation-delay: 7s; }
-  @keyframes rise {0% { transform: translateY(0) scale(1); opacity: 0; }10% { opacity: 1; }80% { opacity: 0.8; }100% { transform: translateY(-100vh) scale(1.5); opacity: 0; }}
+  .smoke-container {position: absolute; bottom: -50px; left: 0; width: 100%; height: 100%;pointer-events: none; z-index: 1; overflow: hidden; opacity: 0.6;}
+  .smoke-svg {width: 100%; height: 100%;}
+  .smoke-path {fill: var(--gold);opacity: 0.3;filter: url('#smoke-filter');animation: smokeMove 20s linear infinite;}
+  @keyframes smokeMove {0% { transform: translateX(0) translateY(0); }50% { transform: translateX(-5%) translateY(-5%); }100% { transform: translateX(0) translateY(0); }}
+
   .hero-content{max-width:800px; position: relative; z-index: 2;}
   .hero h1{font-size:clamp(3rem,6vw,5.5rem);line-height:1.1;margin-bottom:25px;font-weight:400; text-shadow: 0 5px 15px rgba(0,0,0,0.8);}
   .hero p{font-size:1.1rem;color:var(--muted);margin-bottom:45px;max-width:550px;font-weight:300;line-height:1.8; text-shadow: 0 2px 10px rgba(0,0,0,0.8);}
   .hero-actions{display:flex;gap:20px;flex-wrap:wrap}
   
-  .about-section{background:var(--bg-soft);padding:100px 0;border-bottom:1px solid var(--border)}
-  .about-grid{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center}
-  .about-text h2{font-size:clamp(2rem,4vw,3rem);margin-bottom:25px;font-weight:400}
-  .about-text p{color:var(--muted);font-weight:300;margin-bottom:20px;font-size:1rem}
-  .about-stats{display:grid;grid-template-columns:1fr 1fr;gap:30px}
-  .stat-item{border-left:2px solid var(--gold);padding-left:20px}
-  .stat-item .num{font-family:'Playfair Display',serif;font-size:3.5rem;color:var(--gold);line-height:1;margin-bottom:5px}
-  .stat-item p{font-size:.85rem;color:var(--muted);letter-spacing:1px;text-transform:uppercase;font-weight:500}
-
-  section{padding:120px 0}
-  .section-title{text-align:center;margin-bottom:70px}
+  /* ОБЩИЕ СЕКЦИИ */
+  section{padding:100px 0}
+  .section-title{text-align:center;margin-bottom:60px}
   .section-title h2{font-size:clamp(2rem,4vw,3.5rem);margin-bottom:20px;font-weight:400}
   .section-title p{color:var(--muted);max-width:600px;margin-inline:auto;font-weight:300}
-  
-  /* КОЛЛЕКЦИЯ */
-  .collection { background: var(--bg); border-top: 1px solid var(--border); }
-  .collection-tabs { display: flex; justify-content: center; gap: 15px; margin-bottom: 50px; flex-wrap: wrap; }
-  .tab-btn{background:transparent;border:1px solid var(--border);color:var(--muted);padding:12px 30px;font-family:'Inter',sans-serif;font-size:.85rem;font-weight:500;letter-spacing:1px;text-transform:uppercase;cursor:pointer;transition:.3s;}
-  .tab-btn.active{background:var(--gold);color:var(--bg);border-color:var(--gold)}
-  .tab-btn:hover:not(.active){border-color:var(--gold);color:var(--gold)}
-  .collection-grid { display: none; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 30px; align-items: stretch; }
-  .collection-grid.active { display: grid; }
-  
-  .hookah-card {background: var(--card);border: 1px solid var(--border);overflow: hidden;transition: .4s;display: flex;flex-direction: column;}
-  .hookah-card:hover { transform: translateY(-5px); border-color: var(--gold); box-shadow: 0 15px 30px rgba(0,0,0,0.4); }
-  
-  /* Заглушка для фото (чтобы не было пустых квадратов, если интернет отвалится) */
-  .hookah-image { 
-    height: 350px; 
-    background-color: #222725;
-    background-image: radial-gradient(circle at center, rgba(200,165,102,0.2) 0%, transparent 60%), url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><text x="50" y="50" font-size="40" text-anchor="middle" dominant-baseline="middle" fill="rgba(200,165,102,0.1)">LUXE</text></svg>');
-    background-size: cover, 100px; 
-    background-position: center;
-    position: relative; 
-  }
-  .hookah-image::after { content: ''; position: absolute; inset: 0; background: linear-gradient(to top, rgba(26, 33, 32, 1) 0%, rgba(26, 33, 32, 0) 40%); }
-  
-  .hookah-info { padding: 25px 30px 30px; flex-grow: 1; display: flex; flex-direction: column; position: relative; z-index: 2; }
-  .hookah-info h4 { font-size: 1.5rem; margin-bottom: 10px; text-align: center; }
-  .hookah-info p { font-size: 0.9rem; color: var(--muted); margin-bottom: 20px; text-align: center; font-weight: 300;}
-  .hookah-price { font-family: 'Playfair Display', serif; font-size: 2rem; color: var(--gold); display: flex; justify-content: center; align-items: center; gap: 10px; border-top: 1px solid rgba(255,255,255,0.05); padding-top: 20px; margin-top: auto;}
-  .hookah-price span { font-family: 'Inter', sans-serif; font-size: 0.8rem; color: var(--muted); text-transform: uppercase; letter-spacing: 1px; }
 
-  .price-tabs{display:flex;justify-content:center;gap:15px;margin-bottom:50px;flex-wrap:wrap}
-  .prices{display:none;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:30px;align-items:center;}
-  .prices.active{display:grid !important}
-  .price-card{ background:var(--card);border:1px solid var(--border);padding:50px 40px;text-align:center; position:relative;transition:.3s; }
-  .price-card:hover{transform:translateY(-5px);border-color:rgba(200,165,102,0.3)}
-  .price-card.featured{ border-color:var(--gold);background:linear-gradient(180deg, #1a2120, rgba(200,165,102,0.05));transform:scale(1.05);z-index:2;box-shadow:0 15px 40px rgba(0,0,0,0.5); }
-  .price-card.featured:hover{transform:scale(1.05) translateY(-5px)}
-  .price-card.featured::after{ content:'Выбор экспертов';position:absolute;top:-15px;left:50%;transform:translateX(-50%); background:var(--gold);color:var(--bg);font-size:.7rem;font-weight:600;text-transform:uppercase;letter-spacing:2px;padding:6px 25px; }
-  .price-card h3{font-size:1.8rem;margin-bottom:15px;font-weight:400}
-  .price-card .price{font-family:'Playfair Display',serif;font-size:3.5rem;color:var(--gold);margin-bottom:30px;line-height:1}
-  .price-card .price small{font-family:'Inter',sans-serif;font-size:.8rem;color:var(--muted);letter-spacing:1px;font-weight:400}
-  .price-list{list-style:none;text-align:left;margin-bottom:40px;font-size:.9rem;color:var(--muted)}
-  .price-list li{padding:14px 0;border-bottom:1px solid rgba(255,255,255,0.05);display:flex;align-items:center;gap:10px}
-  .price-list li::before{content:'—';color:var(--gold);font-weight:bold}
-
-  .contact-section{ background:var(--bg-soft); border-top:1px solid var(--border); position:relative; }
-  .contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:stretch}
-  .contact-info{ background:var(--card); padding:50px; border:1px solid var(--border); display:flex; flex-direction:column; justify-content:center; box-shadow:0 10px 30px rgba(0,0,0,0.2); }
-  .contact-info h2{font-size:clamp(2rem,4vw,3rem);margin-bottom:25px;font-weight:400}
-  .contact-info p{color:var(--muted);margin-bottom:40px;font-weight:300}
-  .contact-item{margin-bottom:25px;display:flex;align-items:center;gap:15px}
-  .contact-item span{font-size:.85rem;letter-spacing:1px;text-transform:uppercase;color:var(--muted);width:120px;flex-shrink:0;font-weight:500}
-  .contact-item a,.contact-item strong{font-family:'Playfair Display',serif;font-size:1.6rem;color:var(--gold)}
+  /* БЛОК ДОСТАВКИ И АКЦИЙ */
+  .info-grid{display:grid;grid-template-columns:1fr 1fr;gap:30px;}
+  .info-card{background:var(--card);border:1px solid var(--border);padding:40px;transition:.3s;}
+  .info-card:hover{border-color:var(--gold);transform:translateY(-5px);}
+  .info-card h3{font-size:1.6rem;color:var(--gold);margin-bottom:20px;}
+  .info-card p{color:var(--muted);font-size:.95rem;margin-bottom:15px;}
   
-  form{ background:var(--card); padding:50px; border:1px solid var(--gold); box-shadow:0 0 30px rgba(200,165,102,0.15), inset 0 0 20px rgba(200,165,102,0.05); position:relative; }
-  form::before{ content:'Оставить заявку';position:absolute;top:-15px;left:50%;transform:translateX(-50%); background:var(--gold);color:var(--bg);font-size:.75rem;font-weight:600; text-transform:uppercase;letter-spacing:2px;padding:5px 20px; }
-  .field{margin-bottom:25px;position:relative}
-  .field label{display:block;font-size:.75rem;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted);margin-bottom:10px;font-weight:500}
-  .field input,.field select,.field textarea{ width:100%;padding:15px 0;background:transparent;border:none;border-bottom:1px solid var(--border); color:var(--text);font-family:'Inter',sans-serif;font-size:1rem;outline:none;transition:.3s;font-weight:300; }
-  .field input:focus,.field select:focus,.field textarea:focus{border-color:var(--gold); box-shadow: 0 1px 0 var(--gold);}
-  .field select{cursor:pointer;color:var(--text)}
-  .field select option{background:var(--bg);color:var(--text)}
-  .field textarea{resize:none;min-height:80px}
-  form .btn{width:100%;margin-top:10px}
+  .promo-card{border-color:var(--gold); background:linear-gradient(180deg, #1a2120, rgba(200,165,102,0.05));}
+  .promo-card h3{color:var(--gold-light);}
+  .promo-price {font-family:'Playfair Display', serif; font-size: 2rem; color: var(--gold); margin-top: 20px; display:flex; align-items:center; gap: 15px;}
+  .old-price {text-decoration: line-through; color: var(--muted); font-size: 1.2rem; font-family:'Inter',sans-serif;}
 
-  footer{padding:40px 0;text-align:center;border-top:1px solid var(--border);font-size:.8rem;color:var(--muted);letter-spacing:1px}
-  .legal-info{margin-top:25px;font-size:.75rem;color:#6b7270;line-height:1.8}
-  .legal-info p{margin-bottom:5px}
-  .legal-info strong{color:var(--gold);font-weight:500}
-
-  .modal{position:fixed;inset:0;background:rgba(0,0,0,0.85);backdrop-filter:blur(5px);display:none;place-items:center;z-index:200}
-  .modal.active{display:grid}
-  .modal-box{background:var(--card);padding:60px 40px;max-width:500px;width:90%;text-align:center;border:1px solid var(--gold); box-shadow:0 0 40px rgba(200,165,102,0.2);}
-  .modal-box h3{font-size:2.2rem;color:var(--gold);margin-bottom:15px}
-  .modal-box p{color:var(--muted);margin-bottom:30px;font-weight:300}
-
-  @media(max-width:992px){
-    .about-grid{grid-template-columns:1fr;gap:40px}
-    .contact-grid{grid-template-columns:1fr;gap:30px}
-    .price-card.featured{transform:none}
-    .price-card.featured:hover{transform:translateY(-5px)}
-    form{padding:40px 30px}
-    .contact-info{padding:40px 30px}
-  }
-  @media(max-width:768px){
-    .nav-links{position:fixed;top:80px;left:0;right:0;background:var(--bg-soft);flex-direction:column;padding:30px;gap:20px;text-align:center;transform:translateY(-150%);transition:.4s;border-bottom:1px solid var(--border);}
-    .nav-links.open{transform:translateY(0)}
-    .burger{display:flex}
-    .nav .btn{display:none}
-    .hero h1{font-size:2.8rem}
-    section{padding:80px 0}
-    .about-stats{grid-template-columns:1fr}
-  }
-</style>
+  /* ДОГОВОР */
+  .contract-box {background:var(--bg-soft); border:1px solid var(--gold); padding:40px; text-align:center; margin-top: 30px;}
+  .contract-box h3 {font-size:1.8rem; color:var(--gold); margin-bottom:15px;}
+  .contract-box p {color:var(--muted); margin-bottom:25px;}
+  </style>
 </head>
 <body>
 
@@ -171,18 +85,33 @@
     <nav class="nav-links" id="navLinks">
       <a href="#about">О нас</a>
       <a href="#collection">Коллекция</a>
-      <a href="#services">Услуги</a>
       <a href="#prices">Пакеты</a>
+      <a href="payment.html">Оплата</a>
       <a href="#contact">Контакты</a>
     </nav>
     <a href="#contact" class="btn">Забронировать</a>
     <div class="burger" id="burger"><span></span><span></span><span></span></div>
   </div>
 </header>
+
 <section class="hero">
   <div class="smoke-container">
-    <div class="smoke"></div><div class="smoke"></div><div class="smoke"></div><div class="smoke"></div><div class="smoke"></div>
+    <svg class="smoke-svg" viewBox="0 0 1000 500" preserveAspectRatio="none">
+      <defs>
+        <filter id="smoke-filter">
+          <feTurbulence type="fractalNoise" baseFrequency="0.01" numOctaves="3" result="noise" />
+          <feDisplacementMap in="SourceGraphic" in2="noise" scale="100" xChannelSelector="R" yChannelSelector="G" />
+          <feGaussianBlur stdDeviation="20" />
+        </filter>
+        <linearGradient id="smoke-grad" x1="0%" y1="100%" x2="0%" y2="0%">
+          <stop offset="0%" stop-color="#c8a566" stop-opacity="0.8" />
+          <stop offset="100%" stop-color="#c8a566" stop-opacity="0" />
+        </linearGradient>
+      </defs>
+      <rect class="smoke-path" x="0" y="250" width="1000" height="250" fill="url(#smoke-grad)" />
+    </svg>
   </div>
+
   <div class="container hero-content">
     <span class="subtitle">Искусство премиального отдыха</span>
     <h1>Эксклюзивный <br><span class="gold-text">кальянный кейтеринг</span></h1>
@@ -194,19 +123,29 @@
   </div>
 </section>
 
-<section class="about-section" id="about">
-  <div class="container about-grid">
-    <div class="about-text">
-      <span class="subtitle">Наш опыт</span>
-      <h2>Более 5 лет создаем <span class="gold-text">безупречный отдых</span></h2>
-      <p>Мы на рынке кальянного кейтеринга уже более 5 лет. За это время мы организовали сотни мероприятий — от камерных семейных праздников до масштабных закрытых вечеринок и свадеб.</p>
-      <p>Наш подход — это сочетание безупречного вкуса, строгих стандартов сервиса и полной конфиденциальности. Мы не просто привозим оборудование, мы создаем атмосферу, в которой каждая деталь работает на ваш комфорт.</p>
+<!-- БЛОК: ДОСТАВКА И АКЦИИ -->
+<section id="delivery" style="background:var(--bg); border-bottom:1px solid var(--border);">
+  <div class="container">
+    <div class="section-title">
+      <span class="subtitle">Условия</span>
+      <h2>Доставка и <span class="gold-text">акции</span></h2>
     </div>
-    <div class="about-stats">
-      <div class="stat-item"><div class="num">5+</div><p>Лет опыта</p></div>
-      <div class="stat-item"><div class="num">500+</div><p>Проведенных событий</p></div>
-      <div class="stat-item"><div class="num">100%</div><p>Конфиденциальность</p></div>
-      <div class="stat-item"><div class="num">VIP</div><p>Уровень сервиса</p></div>
+    
+    <div class="info-grid">
+      <!-- Доставка -->
+      <div class="info-card">
+        <h3>Доставка</h3>
+        <p><strong>По Минску:</strong> Доставка 24/7 без выходных.</p>
+        <p><strong>По Минской области и району:</strong> Выезд с мастером или доставка оборудования. Стоимость уточняйте по телефону.</p>
+      </div>
+      
+      <!-- Акции -->
+      <div class="info-card promo-card">
+        <h3>Специальное предложение</h3>
+        <p>Успейте воспользоваться выгодным предложением на суточную аренду!</p>
+        <p><strong>Два кальяна за 80 руб.</strong> <span class="old-price">вместо 100 руб.</span> на сутки!</p>
+        <div class="promo-price">80 BYN <small style="font-size:0.8rem; font-family:'Inter'; color:var(--muted); text-transform:uppercase; letter-spacing:1px; margin-left:10px;">/ 2 кальяна</small></div>
+      </div>
     </div>
   </div>
 </section>
@@ -224,40 +163,40 @@
       <button class="tab-btn" onclick="showCollection('vip')">VIP / Кейтеринг</button>
     </div>
 
-    <!-- 1. Стандарт (50 BYN) -->
+    <!-- 1. Стандарт -->
     <div class="collection-grid active" id="col-standard">
       <div class="hookah-card">
-        <div class="hookah-image" style="background-image: url('https://images.unsplash.com/photo-1563227812-0ea4c22e6cc8?auto=format&fit=crop&w=600&q=80'), radial-gradient(circle at center, rgba(200,165,102,0.2) 0%, transparent 60%);"></div>
+        <div class="hookah-image" style="background-image: url('https://images.unsplash.com/photo-1584242616080-2314a324f291?auto=format&fit=crop&w=600&q=80'), radial-gradient(circle at center, rgba(200,165,102,0.2) 0%, transparent 60%);"></div>
         <div class="hookah-info">
-          <h4>Alpha Hookah Model X</h4>
+          <h4>Кальян Стандарт</h4>
           <p>Классика, проверенная временем. Легкая тяга и надежность.</p>
           <div class="hookah-price">50 <span>BYN / сутки</span></div>
         </div>
       </div>
       <div class="hookah-card">
-        <div class="hookah-image" style="background-image: url('https://images.unsplash.com/photo-1574615588404-8a5b19a7c538?auto=format&fit=crop&w=600&q=80'), radial-gradient(circle at center, rgba(200,165,102,0.2) 0%, transparent 60%);"></div>
+        <div class="hookah-image" style="background-image: url('https://images.unsplash.com/photo-1563227812-0ea4c22e6cc8?auto=format&fit=crop&w=600&q=80'), radial-gradient(circle at center, rgba(200,165,102,0.2) 0%, transparent 60%);"></div>
         <div class="hookah-info">
-          <h4>Union Fibonacci</h4>
+          <h4>Кальян Классик</h4>
           <p>Стильный дизайн и отличная продувка. Идеальный выбор для дома.</p>
           <div class="hookah-price">50 <span>BYN / сутки</span></div>
         </div>
       </div>
     </div>
 
-    <!-- 2. Премиум (80 BYN) -->
+    <!-- 2. Премиум -->
     <div class="collection-grid" id="col-premium">
       <div class="hookah-card">
-        <div class="hookah-image" style="background-image: url('https://images.unsplash.com/photo-1584242616080-2314a324f291?auto=format&fit=crop&w=600&q=80'), radial-gradient(circle at center, rgba(200,165,102,0.2) 0%, transparent 60%);"></div>
+        <div class="hookah-image" style="background-image: url('https://images.unsplash.com/photo-1518083220123-553d6e6a1c9c?auto=format&fit=crop&w=600&q=80'), radial-gradient(circle at center, rgba(200,165,102,0.2) 0%, transparent 60%);"></div>
         <div class="hookah-info">
-          <h4>Wookah Walnut</h4>
+          <h4>Кальян Премиум</h4>
           <p>Топовый выбор. Натуральное дерево, идеальная тяга и статусный внешний вид.</p>
           <div class="hookah-price">80 <span>BYN / сутки</span></div>
         </div>
       </div>
       <div class="hookah-card">
-        <div class="hookah-image" style="background-image: url('https://images.unsplash.com/photo-1518083220123-553d6e6a1c9c?auto=format&fit=crop&w=600&q=80'), radial-gradient(circle at center, rgba(200,165,102,0.2) 0%, transparent 60%);"></div>
+        <div class="hookah-image" style="background-image: url('https://images.unsplash.com/photo-1594322436404-5a0526db4d13?auto=format&fit=crop&w=600&q=80'), radial-gradient(circle at center, rgba(200,165,102,0.2) 0%, transparent 60%);"></div>
         <div class="hookah-info">
-          <h4>Oduman N5</h4>
+          <h4>Кальян Люкс</h4>
           <p>Стекло и металл. Очень часто заказывают на стильные вечеринки.</p>
           <div class="hookah-price">80 <span>BYN / сутки</span></div>
         </div>
@@ -273,7 +212,7 @@
           <div style="position: absolute; bottom: 15px; left: 20px; background: var(--bg); padding: 5px 15px; border: 1px solid var(--gold); color: var(--gold); font-size: 0.8rem; letter-spacing: 2px; text-transform: uppercase; z-index: 10;">Свадьбы</div>
         </div>
         <div class="hookah-info" style="text-align: left;">
-          <h4 style="text-align: left;">Maklaud & Alpha X</h4>
+          <h4 style="text-align: left;">Свадебный формат</h4>
           <p style="text-align: left; margin-bottom: 15px;">Создадим невероятную атмосферу на вашей свадьбе. Премиальные модели, которые идеально впишутся в декор. Гости будут в восторге, а фото получатся по-настоящему роскошными.</p>
           <ul class="price-list" style="margin-bottom: 20px; font-size: 0.85rem;">
             <li>2 мастера на весь вечер</li>
@@ -289,7 +228,7 @@
            <div style="position: absolute; bottom: 15px; left: 20px; background: var(--bg); padding: 5px 15px; border: 1px solid #4a5a58; color: #9ca3a1; font-size: 0.8rem; letter-spacing: 2px; text-transform: uppercase; z-index: 10;">Частные вечеринки</div>
         </div>
         <div class="hookah-info" style="text-align: left;">
-          <h4 style="text-align: left;">B2 Hookah / Премиум</h4>
+          <h4 style="text-align: left;">Вечериночный формат</h4>
           <p style="text-align: left; margin-bottom: 15px;">Для тех, кто хочет удивить гостей. Привезем стильные и необычные модели, которые станут центром внимания на вашей закрытой вечеринке в коттедже или на природе.</p>
           <ul class="price-list" style="margin-bottom: 20px; font-size: 0.85rem;">
             <li>Выезд на природу / коттедж</li>
@@ -303,36 +242,46 @@
 
   </div>
 </section>
+<section id="prices" style="background:var(--bg-soft); border-top:1px solid var(--border); border-bottom:1px solid var(--border);">
+  <div class="container">
+    <div class="section-title">
+      <span class="subtitle">Стоимость</span>
+      <h2>Выберите свой <span class="gold-text">формат</span></h2>
+    </div>
+
+    <div class="price-tabs">
+      <button class="tab-btn active" onclick="showPrices('catering')">С мастером (под ключ)</button>
+      <button class="tab-btn" onclick="showPrices('rental')">Прокат без мастера</button>
+    </div>
+
     <!-- Вкладка 1: С мастером -->
     <div class="prices active" id="tab-catering" style="display: grid; grid-template-columns: repeat(auto-fit,minmax(320px,1fr)); gap: 30px; align-items: center;">
       <div class="price-card">
-        <h3>Elegance</h3>
-        <div class="price">450 <small>BYN</small></div>
+        <h3>Базовый</h3>
+        <div class="price">от 450 <small>BYN</small></div>
         <ul class="price-list">
-          <li>До 4 часов работы</li>
-          <li>2 кальяна премиум-класса</li>
-          <li>Расходные материалы</li>
-          <li>1 кальянный мастер</li>
+          <li>2 кальяна — 450 руб</li>
+          <li>3 кальяна — 550 руб</li>
+          <li>1 или 2 мастера (зависит от количества)</li>
         </ul>
         <a href="#contact" class="btn" style="width:100%;">Выбрать</a>
       </div>
       
       <div class="price-card featured">
-        <h3>Exclusive</h3>
-        <div class="price">800 <small>BYN</small></div>
+        <h3>Популярный</h3>
+        <div class="price">от 850 <small>BYN</small></div>
         <ul class="price-list">
+          <li>От 4 кальянов</li>
           <li>До 6 часов работы</li>
-          <li>6 кальянов премиум-класса</li>
           <li>Индивидуальное обслуживание гостей</li>
           <li>2 кальянных мастера</li>
-          <li>Премиальное обслуживание гостей</li> <!-- Убрали фотозону -->
         </ul>
         <a href="#contact" class="btn btn-solid" style="width:100%;">Выбрать</a>
       </div>
       
       <div class="price-card">
-        <h3>Bespoke</h3>
-        <div class="price" style="font-size:2.5rem; padding-top:10px;">Индивидуально</div>
+        <h3>Индивидуальный</h3>
+        <div class="price" style="font-size:2.5rem; padding-top:10px;">По запросу</div>
         <ul class="price-list">
           <li>Весь вечер без ограничений</li>
           <li>Любое количество кальянов</li>
@@ -358,6 +307,13 @@
         <a href="#contact" class="btn btn-solid" style="max-width: 300px; margin: 0 auto;">Забронировать прокат</a>
       </div>
     </div>
+
+    <!-- Блок договора -->
+    <div class="contract-box">
+      <h3>Официальный договор аренды</h3>
+      <p>Мы работаем прозрачно. Скачайте типовой договор аренды, чтобы ознакомиться с условиями сотрудничества.</p>
+      <button id="downloadContract" class="btn btn-solid">Скачать договор (Word)</button>
+    </div>
     
   </div>
 </section>
@@ -365,7 +321,6 @@
 <section class="contact-section" id="contact">
   <div class="container contact-grid">
     
-    <!-- Контакты -->
     <div class="contact-info">
       <span class="subtitle">Свяжитесь с нами</span>
       <h2>Организуем <span class="gold-text">безупречный</span> отдых</h2>
@@ -385,7 +340,6 @@
       </div>
     </div>
     
-    <!-- Форма -->
     <form id="leadForm">
       <div class="field">
         <label>Ваше имя</label>
@@ -410,27 +364,6 @@
     
   </div>
 </section>
-<footer>
-  <div class="container">
-    <div style="font-family:'Playfair Display',serif; font-size:1.5rem; color:var(--gold); margin-bottom:15px;">LUXE HOOKAH</div>
-    <p>© Все права защищены.</p>
-    
-    <div class="legal-info">
-      <p>ИП <strong>Салацкий Владислав Владимирович</strong></p>
-      <p>УНП: <strong>693462668</strong></p>
-      <p>Контактный телефон: <strong>+375 (25) 643-96-32</strong></p>
-    </div>
-  </div>
-</footer>
-
-<div class="modal" id="modal">
-  <div class="modal-box">
-    <h3>Заявка принята</h3>
-    <p>Наш менеджер свяжется с вами в ближайшее время для обсуждения деталей вашего мероприятия.</p>
-    <button class="btn btn-solid" id="closeModal" style="width:100%;">Отлично</button>
-  </div>
-</div>
-
 <script>
   // Мобильное меню
   const burger = document.getElementById('burger');
@@ -438,20 +371,18 @@
   burger.addEventListener('click', () => navLinks.classList.toggle('open'));
   navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => navLinks.classList.remove('open')));
 
-  // Переключение тарифов в ценах
+  // Переключение цен
   function showPrices(tabName) {
     document.querySelectorAll('.prices').forEach(el => el.style.display = 'none');
     document.querySelectorAll('.price-tabs .tab-btn').forEach(el => el.classList.remove('active'));
-    
     document.getElementById('tab-' + tabName).style.display = (tabName === 'catering') ? 'grid' : 'block';
     event.currentTarget.classList.add('active');
   }
 
-  // Переключение коллекции кальянов
+  // Переключение коллекции
   function showCollection(tabName) {
     document.querySelectorAll('.collection-grid').forEach(el => el.classList.remove('active'));
     document.querySelectorAll('.collection-tabs .tab-btn').forEach(el => el.classList.remove('active'));
-    
     document.getElementById('col-' + tabName).classList.add('active');
     event.currentTarget.classList.add('active');
   }
@@ -477,6 +408,81 @@
     if (v.length >= 9) out += '-' + v.slice(8,10);
     if (v.length >= 11) out += '-' + v.slice(10,12);
     phone.value = out;
+  });
+
+  // ГЕНЕРАЦИЯ ДОГОВОРА В WORD
+  document.getElementById('downloadContract').addEventListener('click', function() {
+    const contractHTML = `
+      <html xmlns:o='urn:schemas-microsoft-com:office:office' xmlns:w='urn:schemas-microsoft-com:office:word' xmlns='http://www.w3.org/TR/REC-html40'>
+      <head><meta charset='utf-8'><title>Договор аренды</title>
+      <style>
+        body { font-family: 'Times New Roman', serif; font-size: 14px; line-height: 1.5; padding: 20px; }
+        h2 { text-align: center; font-size: 18px; }
+        h3 { font-size: 16px; margin-top: 20px; }
+        p { margin-bottom: 10px; text-align: justify; }
+        table { width: 100%; border: none; margin-top: 30px; }
+        td { vertical-align: top; width: 50%; }
+      </style>
+      </head>
+      <body>
+        <h2>ДОГОВОР АРЕНДЫ ОБОРУДОВАНИЯ № ___</h2>
+        <p style="text-align: right;">г. Минск &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; «___» _________ 20__ г.</p>
+        
+        <p><strong>ИП Салацкий Владислав Владимирович</strong> (УНП 693462668), действующий на основании свидетельства о регистрации, именуемый в дальнейшем «Арендодатель», с одной стороны, и</p>
+        
+        <p>______________________________________________________ (ФИО / Наименование организации), именуемый в дальнейшем «Арендатор», с другой стороны, заключили настоящий договор о нижеследующем:</p>
+        
+        <h3>1. ПРЕДМЕТ ДОГОВОРА</h3>
+        <p>1.1. Арендодатель предоставляет Арендатору во временное владение и пользование кальянное оборудование (далее — Оборудование), а Арендатор обязуется принять его, использовать по назначению и вернуть в исправном состоянии.</p>
+        <p>1.2. Перечень, количество и стоимость Оборудования указываются в Акте приема-передачи, являющемся неотъемлемой частью настоящего Договора.</p>
+
+        <h3>2. СРОК АРЕНДЫ И ПОРЯДОК РАСЧЕТОВ</h3>
+        <p>2.1. Срок аренды составляет: _______________________________.</p>
+        <p>2.2. Стоимость аренды составляет: ___________________ BYN.</p>
+        <p>2.3. Оплата производится в следующем порядке (наличными / безналичным переводом / картой): __________________________________.</p>
+        <p>2.4. При необходимости вносится залоговая стоимость в размере: ___________ BYN, которая возвращается Арендатору после сдачи оборудования в исправном состоянии.</p>
+
+        <h3>3. ПРАВА И ОБЯЗАННОСТИ СТОРОН</h3>
+        <p>3.1. Арендодатель обязуется передать Арендатору Оборудование в исправном состоянии.</p>
+        <p>3.2. Арендатор обязуется бережно относиться к Оборудованию, не передавать его третьим лицам без согласия Арендодателя.</p>
+        <p>3.3. В случае поломки или утери Оборудования по вине Арендатора, последний возмещает полную стоимость ущерба согласно Акту.</p>
+
+        <h3>4. ДОПОЛНИТЕЛЬНЫЕ УСЛОВИЯ</h3>
+        <p>4.1. Настоящий Договор составлен в двух экземплярах, имеющих равную юридическую силу.</p>
+        <p>4.2. Все споры разрешаются в соответствии с законодательством Республики Беларусь.</p>
+
+        <table>
+          <tr>
+            <td>
+              <strong>АРЕНДОДАТЕЛЬ:</strong><br><br>
+              ИП Салацкий В.В.<br>
+              УНП: 693462668<br>
+              Тел: +375 (25) 643-96-32<br><br>
+              ______________ / Салацкий В.В. /
+            </td>
+            <td>
+              <strong>АРЕНДАТОР:</strong><br><br>
+              _____________________________<br>
+              _____________________________<br>
+              Тел: ________________________<br><br>
+              ______________ / _____________ /
+            </td>
+          </tr>
+        </table>
+      </body>
+      </html>
+    `;
+
+    // Создаем файл и скачиваем
+    const blob = new Blob(['\ufeff', contractHTML], { type: 'application/msword' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = 'Договор_аренды_LUXE_HOOKAH.doc';
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
   });
 </script>
 </body>
