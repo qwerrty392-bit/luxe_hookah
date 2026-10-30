@@ -54,10 +54,14 @@
   .hero-content{max-width:800px; position: relative; z-index: 2; margin: 0 auto;}
   .hero h1{font-size:clamp(3rem,6vw,5.5rem);line-height:1.1;margin-bottom:25px;font-weight:400; text-shadow: 0 5px 15px rgba(0,0,0,0.8);}
   .hero p{font-size:1.1rem;color:var(--muted);margin-bottom:45px;font-weight:300;line-height:1.8; text-shadow: 0 2px 10px rgba(0,0,0,0.8);}
-  .hero-actions{display:flex;gap:20px;flex-wrap:wrap; justify-content:center;}
   
-  /* Анимация пульсации для плашки 24/7 */
-  .pulse-badge {display: inline-block; background: rgba(200,165,102,0.15); border: 1px solid var(--gold); padding: 15px 30px; border-radius: 8px; animation: pulse 2s infinite; margin-top: 20px;}
+  /* Карточки форматов */
+  .format-card {display: flex; flex-direction: column; background: var(--card); border: 1px solid var(--border); padding: 25px 30px; border-radius: 4px; text-align: left; min-width: 280px; transition: .3s;}
+  .format-card:hover {transform: translateY(-5px); border-color: var(--gold); box-shadow: 0 10px 30px rgba(0,0,0,0.3);}
+  .format-card:hover span {color: var(--gold-light) !important;}
+
+  /* Анимация пульсации 24/7 */
+  .pulse-badge {display: inline-block; background: rgba(200,165,102,0.15); border: 1px solid var(--gold); padding: 15px 30px; border-radius: 8px; animation: pulse 2s infinite; margin-top: 10px;}
   .pulse-badge p {margin: 0; color: var(--gold-light); font-weight: 500; font-size: 1.1rem; letter-spacing: 1px;}
   @keyframes pulse {0% { box-shadow: 0 0 0 0 rgba(200, 165, 102, 0.4); }70% { box-shadow: 0 0 0 15px rgba(200, 165, 102, 0); }100% { box-shadow: 0 0 0 0 rgba(200, 165, 102, 0); }}
 
@@ -88,8 +92,11 @@
   
   .hookah-card {background: var(--card);border: 1px solid var(--border);overflow: hidden;transition: .4s;display: flex;flex-direction: column;}
   .hookah-card:hover { transform: translateY(-5px); border-color: var(--gold); box-shadow: 0 15px 30px rgba(0,0,0,0.4); }
-  .hookah-image { height: 300px; background-color: #222725; background-size: cover; background-position: center; position: relative; }
+  
+  /* КРАСНЫЕ ЗАГЛУШКИ ДЛЯ ФОТО */
+  .hookah-image { height: 300px; background-color: #cc0000; position: relative; }
   .hookah-image::after { content: ''; position: absolute; inset: 0; background: linear-gradient(to top, rgba(26, 33, 32, 1) 0%, rgba(26, 33, 32, 0) 40%); }
+  
   .hookah-info { padding: 25px 30px 30px; flex-grow: 1; display: flex; flex-direction: column; position: relative; z-index: 2; text-align: center;}
   .hookah-info h4 { font-size: 1.5rem; margin-bottom: 10px; }
   .hookah-info p { font-size: 0.9rem; color: var(--muted); margin-bottom: 20px; font-weight: 300;}
@@ -193,12 +200,26 @@
   <div class="container hero-content">
     <span class="subtitle">Искусство премиального отдыха</span>
     <h1>Эксклюзивный <br><span class="gold-text">кальянный кейтеринг</span></h1>
-    <p>Создаем атмосферу роскоши на ваших мероприятиях. Премиальное оборудование и безупречный сервис от личных мастеров.</p>
+    <p>Создаем атмосферу роскоши на ваших мероприятиях. Выберите формат, который подходит именно вам.</p>
     
-    <div class="hero-actions" style="margin-bottom: 30px; justify-content: center;">
-      <a href="#contact" class="btn btn-solid">Обсудить мероприятие</a>
-      <a href="#collection" class="btn">Выбрать кальян</a>
-      <a href="#prices" class="btn" style="border-color: var(--gold-light); color: var(--gold-light); background: rgba(200,165,102,0.1);">Обычная аренда (от 50 BYN)</a>
+    <div style="display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; margin-bottom: 40px;">
+      
+      <a href="#prices" class="format-card" style="border-color: var(--gold); background: rgba(200,165,102,0.05);">
+        <h3 style="color: var(--gold); font-size: 1.4rem; margin-bottom: 5px;">С мастером</h3>
+        <p style="color: var(--muted); font-size: 0.85rem; margin-bottom: 15px;">Кейтеринг под ключ для свадеб и вечеринок</p>
+        <span style="color: var(--gold); font-size: 0.9rem; font-weight: 600; text-transform: uppercase; letter-spacing: 1px;">от 450 BYN →</span>
+      </a>
+
+      <a href="#prices" class="format-card">
+        <h3 style="color: var(--gold-light); font-size: 1.4rem; margin-bottom: 5px;">Без мастера</h3>
+        <p style="color: var(--muted); font-size: 0.85rem; margin-bottom: 15px;">Просто аренда оборудования на сутки</p>
+        <span style="color: var(--gold-light); font-size: 0.9rem; font-weight: 600; text-transform: uppercase; letter-spacing: 1px;">от 50 BYN →</span>
+      </a>
+
+    </div>
+
+    <div class="hero-actions" style="justify-content: center; margin-bottom: 40px;">
+      <a href="#contact" class="btn btn-solid" style="padding: 16px 50px;">Обсудить мероприятие</a>
     </div>
 
     <div class="pulse-badge">
@@ -230,6 +251,7 @@
     </div>
   </div>
 </section>
+
 <section class="collection" id="collection">
   <div class="container">
     <div class="section-title">
@@ -247,7 +269,7 @@
     <!-- СТАНДАРТ -->
     <div class="collection-grid active" id="col-standard">
       <div class="hookah-card">
-        <div class="hookah-image" style="background-image: url('https://images.unsplash.com/photo-1584242616080-2314a324f291?auto=format&fit=crop&w=600&q=80');"></div>
+        <div class="hookah-image"></div>
         <div class="hookah-info">
           <h4>Кальян Стандарт</h4>
           <p>Классика, проверенная временем. Легкая тяга и надежность.</p>
@@ -255,7 +277,7 @@
         </div>
       </div>
       <div class="hookah-card">
-        <div class="hookah-image" style="background-image: url('https://images.unsplash.com/photo-1563227812-0ea4c22e6cc8?auto=format&fit=crop&w=600&q=80');"></div>
+        <div class="hookah-image"></div>
         <div class="hookah-info">
           <h4>Кальян Классик</h4>
           <p>Стильный дизайн и отличная продувка. Идеальный выбор для дома.</p>
@@ -263,11 +285,10 @@
         </div>
       </div>
     </div>
-
-    <!-- ПРЕМИУМ -->
+        <!-- ПРЕМИУМ -->
     <div class="collection-grid" id="col-premium">
       <div class="hookah-card">
-        <div class="hookah-image" style="background-image: url('https://images.unsplash.com/photo-1518083220123-553d6e6a1c9c?auto=format&fit=crop&w=600&q=80');"></div>
+        <div class="hookah-image"></div>
         <div class="hookah-info">
           <h4>Кальян Премиум</h4>
           <p>Топовый выбор. Натуральное дерево, идеальная тяга и статусный внешний вид.</p>
@@ -275,7 +296,7 @@
         </div>
       </div>
       <div class="hookah-card">
-        <div class="hookah-image" style="background-image: url('https://images.unsplash.com/photo-1594322436404-5a0526db4d13?auto=format&fit=crop&w=600&q=80');"></div>
+        <div class="hookah-image"></div>
         <div class="hookah-info">
           <h4>Кальян Люкс</h4>
           <p>Стекло и металл. Очень часто заказывают на стильные вечеринки.</p>
@@ -288,7 +309,7 @@
     <div class="collection-grid" id="col-vip">
       <!-- Свадьбы -->
       <div class="hookah-card" style="border-color: var(--gold);">
-        <div class="hookah-image" style="background-image: url('https://images.unsplash.com/photo-1574615588404-8a5b19a7c538?auto=format&fit=crop&w=600&q=80'); height: 250px;">
+        <div class="hookah-image" style="height: 250px;">
           <div style="position: absolute; bottom: 15px; left: 20px; background: var(--bg); padding: 5px 15px; border: 1px solid var(--gold); color: var(--gold); font-size: 0.8rem; letter-spacing: 2px; text-transform: uppercase; z-index: 10;">Свадьбы</div>
         </div>
         <div class="hookah-info" style="text-align: left;">
@@ -304,7 +325,7 @@
 
       <!-- Вечеринки -->
       <div class="hookah-card" style="border-color: var(--gold);">
-        <div class="hookah-image" style="background-image: url('https://images.unsplash.com/photo-1590059355158-314e6dbe77e6?auto=format&fit=crop&w=600&q=80'); height: 250px;">
+        <div class="hookah-image" style="height: 250px;">
            <div style="position: absolute; bottom: 15px; left: 20px; background: var(--bg); padding: 5px 15px; border: 1px solid var(--gold); color: var(--gold); font-size: 0.8rem; letter-spacing: 2px; text-transform: uppercase; z-index: 10;">Вечеринки</div>
         </div>
         <div class="hookah-info" style="text-align: left;">
@@ -320,57 +341,7 @@
     </div>
   </div>
 </section>
-<section id="prices" style="background:var(--bg-soft); border-top:1px solid var(--border); border-bottom:1px solid var(--border);">
-  <div class="container">
-    <div class="section-title">
-      <span class="subtitle">Стоимость</span>
-      <h2>Выберите свой <span class="gold-text">формат</span></h2>
-    </div>
-
-    <div class="tabs-container">
-      <button class="tab-btn active" onclick="showPrices('catering')">С мастером (под ключ)</button>
-      <button class="tab-btn" onclick="showPrices('rental')">Прокат без мастера</button>
-    </div>
-
-    <!-- Вкладка 1: С мастером -->
-    <div class="prices active" id="tab-catering">
-      <div class="price-card">
-        <h3>Базовый</h3>
-        <div class="price">от 450 <small>BYN</small></div>
-        <ul class="price-list">
-          <li>2 кальяна — 450 руб</li>
-          <li>3 кальяна — 550 руб</li>
-          <li>1 или 2 мастера (зависит от количества)</li>
-        </ul>
-        <a href="#contact" class="btn" style="width:100%;">Выбрать</a>
-      </div>
-      
-      <div class="price-card featured">
-        <h3>Популярный</h3>
-        <div class="price">от 850 <small>BYN</small></div>
-        <ul class="price-list">
-          <li>От 4 кальянов</li>
-          <li>До 6 часов работы</li>
-          <li>Индивидуальное обслуживание гостей</li>
-          <li>2 кальянных мастера</li>
-        </ul>
-        <a href="#contact" class="btn btn-solid" style="width:100%;">Выбрать</a>
-      </div>
-      
-      <div class="price-card">
-        <h3>Индивидуальный</h3>
-        <div class="price" style="font-size:2.5rem; padding-top:10px;">По запросу</div>
-        <ul class="price-list">
-          <li>Весь вечер без ограничений</li>
-          <li>Любое количество кальянов</li>
-          <li>Команда мастеров</li>
-          <li>Личный менеджер проекта</li>
-        </ul>
-        <a href="#contact" class="btn" style="width:100%;">Связаться</a>
-      </div>
-    </div>
-
-    <!-- Вкладка 2: Прокат -->
+    <!-- Вкладка 2: Прокат (Только одна карточка) -->
     <div class="prices" id="tab-rental">
       <div class="price-card" style="max-width: 600px; margin: 0 auto; grid-column: 1 / -1;">
         <h3>Прокат оборудования</h3>
@@ -387,6 +358,7 @@
     </div>
   </div>
 </section>
+
 <section id="contract-section" style="background:var(--bg); border-bottom:1px solid var(--border); padding: 80px 0;">
   <div class="container">
     <div class="contract-box">
