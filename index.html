@@ -4,42 +4,26 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>LUXE HOOKAH | Премиальный кейтеринг и аренда оборудования</title>
-<meta name="description" content="Эксклюзивная аренда кальянного оборудования и кейтеринг под ключ. Более 5 лет опыта. Личный мастер, безупречный сервис.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
 <style>
   :root{
-    --bg:#0d1110;
-    --bg-soft:#141a19;
-    --card:#1a2120;
-    --gold:#c8a566;
-    --gold-light:#f0dca8;
-    --text:#f4f5f4;
-    --muted:#9ca3a1;
-    --border:rgba(200,165,102,0.15);
+    --bg:#0d1110; --bg-soft:#141a19; --card:#1a2120;
+    --gold:#c8a566; --gold-light:#f0dca8; --text:#f4f5f4;
+    --muted:#9ca3a1; --border:rgba(200,165,102,0.15);
   }
   *{margin:0;padding:0;box-sizing:border-box}
   html{scroll-behavior:smooth}
-  body{
-    font-family:'Inter',sans-serif;
-    background:var(--bg);color:var(--text);line-height:1.7;overflow-x:hidden;
-    -webkit-font-smoothing: antialiased;
-  }
+  body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);line-height:1.7;overflow-x:hidden;-webkit-font-smoothing:antialiased;}
   a{color:inherit;text-decoration:none}
   .container{width:min(1200px,90%);margin-inline:auto}
 
-  /* TYPOGRAPHY */
   h1,h2,h3,h4,.logo{font-family:'Playfair Display',serif;font-weight:600;letter-spacing:.5px}
   .gold-text{color:var(--gold)}
   .subtitle{font-size:.75rem;letter-spacing:4px;text-transform:uppercase;color:var(--gold);display:block;margin-bottom:15px;font-weight:500}
 
-  /* HEADER */
-  header{
-    position:fixed;top:0;left:0;right:0;z-index:100;
-    background:rgba(13,17,16,.85);backdrop-filter:blur(15px);
-    border-bottom:1px solid var(--border);transition:0.3s;
-  }
+  header{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(13,17,16,.85);backdrop-filter:blur(15px);border-bottom:1px solid var(--border);transition:0.3s;}
   .nav{display:flex;align-items:center;justify-content:space-between;padding:20px 0;gap:20px}
   .logo{font-size:1.8rem;font-weight:700;letter-spacing:2px}
   .logo span{color:var(--gold);font-style:italic}
@@ -48,11 +32,7 @@
   .nav-links a::after{content:'';position:absolute;bottom:0;left:0;width:0;height:1px;background:var(--gold);transition:.3s}
   .nav-links a:hover::after{width:100%}
   
-  .btn{
-    display:inline-flex;align-items:center;justify-content:center;padding:16px 36px;
-    font-family:'Inter',sans-serif;font-size:.8rem;font-weight:500;letter-spacing:1.5px;text-transform:uppercase;
-    background:transparent;color:var(--gold);border:1px solid var(--gold);cursor:pointer;transition:.4s;position:relative;overflow:hidden;
-  }
+  .btn{display:inline-flex;align-items:center;justify-content:center;padding:16px 36px;font-family:'Inter',sans-serif;font-size:.8rem;font-weight:500;letter-spacing:1.5px;text-transform:uppercase;background:transparent;color:var(--gold);border:1px solid var(--gold);cursor:pointer;transition:.4s;position:relative;overflow:hidden;}
   .btn:hover{background:var(--gold);color:var(--bg)}
   .btn-solid{background:var(--gold);color:var(--bg);border:none}
   .btn-solid:hover{background:var(--gold-light);box-shadow:0 0 25px rgba(200,165,102,.5)}
@@ -60,23 +40,21 @@
   .burger{display:none;flex-direction:column;gap:6px;cursor:pointer}
   .burger span{width:30px;height:1px;background:var(--gold);transition:0.3s}
 
-  /* HERO С ДЫМОМ */
-  .hero{
-    min-height:100vh;display:flex;align-items:center;position:relative;
-    background:linear-gradient(rgba(13,17,16,0.85), rgba(13,17,16,0.95)), url('https://images.unsplash.com/photo-1584242616080-2314a324f291?auto=format&fit=crop&w=1920&q=80') center/cover no-repeat;
-    padding:150px 0 100px;
-    overflow:hidden;
-  }
-  #smokeCanvas {
-    position: absolute; bottom: 0; left: 0; width: 100%; height: 100%;
-    pointer-events: none; z-index: 1; opacity: 0.9;
-  }
+  /* HERO С ДЫМОМ (CSS) */
+  .hero{min-height:100vh;display:flex;align-items:center;position:relative;background:linear-gradient(rgba(13,17,16,0.85), rgba(13,17,16,0.95)), url('https://images.unsplash.com/photo-1584242616080-2314a324f291?auto=format&fit=crop&w=1920&q=80') center/cover no-repeat;padding:150px 0 100px;overflow:hidden;}
+  .smoke-container{position: absolute;inset: 0;pointer-events: none;z-index: 1;overflow: hidden;}
+  .smoke{position: absolute;bottom: -100px;width: 400px;height: 400px;background: radial-gradient(circle, rgba(200,165,102,0.15) 0%, rgba(200,165,102,0) 70%);border-radius: 50%;animation: rise 15s infinite ease-in;filter: blur(20px);}
+  .smoke:nth-child(1) { left: 5%; animation-duration: 12s; animation-delay: 0s; }
+  .smoke:nth-child(2) { left: 25%; animation-duration: 18s; animation-delay: 2s; width: 500px; height: 500px; }
+  .smoke:nth-child(3) { left: 50%; animation-duration: 14s; animation-delay: 5s; }
+  .smoke:nth-child(4) { left: 75%; animation-duration: 20s; animation-delay: 1s; width: 600px; height: 600px; }
+  .smoke:nth-child(5) { left: 90%; animation-duration: 16s; animation-delay: 7s; }
+  @keyframes rise {0% { transform: translateY(0) scale(1); opacity: 0; }10% { opacity: 1; }80% { opacity: 0.8; }100% { transform: translateY(-100vh) scale(1.5); opacity: 0; }}
   .hero-content{max-width:800px; position: relative; z-index: 2;}
-  .hero h1{font-size:clamp(3rem,6vw,5.5rem);line-height:1.1;margin-bottom:25px;font-weight:400; text-shadow: 0 5px 15px rgba(0,0,0,0.5);}
-  .hero p{font-size:1.1rem;color:var(--muted);margin-bottom:45px;max-width:550px;font-weight:300;line-height:1.8; text-shadow: 0 2px 10px rgba(0,0,0,0.5);}
+  .hero h1{font-size:clamp(3rem,6vw,5.5rem);line-height:1.1;margin-bottom:25px;font-weight:400; text-shadow: 0 5px 15px rgba(0,0,0,0.8);}
+  .hero p{font-size:1.1rem;color:var(--muted);margin-bottom:45px;max-width:550px;font-weight:300;line-height:1.8; text-shadow: 0 2px 10px rgba(0,0,0,0.8);}
   .hero-actions{display:flex;gap:20px;flex-wrap:wrap}
   
-  /* ABOUT / FEATURES */
   .about-section{background:var(--bg-soft);padding:100px 0;border-bottom:1px solid var(--border)}
   .about-grid{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center}
   .about-text h2{font-size:clamp(2rem,4vw,3rem);margin-bottom:25px;font-weight:400}
@@ -86,108 +64,69 @@
   .stat-item .num{font-family:'Playfair Display',serif;font-size:3.5rem;color:var(--gold);line-height:1;margin-bottom:5px}
   .stat-item p{font-size:.85rem;color:var(--muted);letter-spacing:1px;text-transform:uppercase;font-weight:500}
 
-  /* SECTIONS */
   section{padding:120px 0}
   .section-title{text-align:center;margin-bottom:70px}
   .section-title h2{font-size:clamp(2rem,4vw,3.5rem);margin-bottom:20px;font-weight:400}
   .section-title p{color:var(--muted);max-width:600px;margin-inline:auto;font-weight:300}
-
-  /* --- РАЗДЕЛ: КОЛЛЕКЦИЯ --- */
+  
+  /* КОЛЛЕКЦИЯ */
   .collection { background: var(--bg); border-top: 1px solid var(--border); }
   .collection-tabs { display: flex; justify-content: center; gap: 15px; margin-bottom: 50px; flex-wrap: wrap; }
-  .tab-btn{
-    background:transparent;border:1px solid var(--border);color:var(--muted);
-    padding:12px 30px;font-family:'Inter',sans-serif;font-size:.85rem;font-weight:500;
-    letter-spacing:1px;text-transform:uppercase;cursor:pointer;transition:.3s;
-  }
+  .tab-btn{background:transparent;border:1px solid var(--border);color:var(--muted);padding:12px 30px;font-family:'Inter',sans-serif;font-size:.85rem;font-weight:500;letter-spacing:1px;text-transform:uppercase;cursor:pointer;transition:.3s;}
   .tab-btn.active{background:var(--gold);color:var(--bg);border-color:var(--gold)}
   .tab-btn:hover:not(.active){border-color:var(--gold);color:var(--gold)}
-  
-  .collection-grid { 
-    display: none; 
-    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); 
-    gap: 30px; 
-    align-items: stretch;
-  }
+  .collection-grid { display: none; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 30px; align-items: stretch; }
   .collection-grid.active { display: grid; }
   
-  .hookah-card {
-    background: var(--card);
-    border: 1px solid var(--border);
-    overflow: hidden;
-    transition: .4s;
-    display: flex;
-    flex-direction: column;
-  }
-  .hookah-card:hover {
-    transform: translateY(-5px);
-    border-color: var(--gold);
-    box-shadow: 0 15px 30px rgba(0,0,0,0.4);
-  }
-  .hookah-image {
-    height: 300px;
-    background-size: cover;
+  .hookah-card {background: var(--card);border: 1px solid var(--border);overflow: hidden;transition: .4s;display: flex;flex-direction: column;}
+  .hookah-card:hover { transform: translateY(-5px); border-color: var(--gold); box-shadow: 0 15px 30px rgba(0,0,0,0.4); }
+  
+  /* Заглушка для фото (чтобы не было пустых квадратов, если интернет отвалится) */
+  .hookah-image { 
+    height: 350px; 
+    background-color: #222725;
+    background-image: radial-gradient(circle at center, rgba(200,165,102,0.2) 0%, transparent 60%), url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><text x="50" y="50" font-size="40" text-anchor="middle" dominant-baseline="middle" fill="rgba(200,165,102,0.1)">LUXE</text></svg>');
+    background-size: cover, 100px; 
     background-position: center;
-    position: relative;
+    position: relative; 
   }
-  .hookah-image::after {
-    content: '';
-    position: absolute; inset: 0;
-    background: linear-gradient(to top, rgba(26, 33, 32, 1) 0%, rgba(26, 33, 32, 0) 40%);
-  }
-  .hookah-info {
-    padding: 25px 30px 30px;
-    flex-grow: 1;
-    display: flex;
-    flex-direction: column;
-    position: relative;
-    z-index: 2;
-  }
-  .hookah-info h4 { font-size: 1.4rem; margin-bottom: 10px; }
-  .hookah-info p { font-size: 0.85rem; color: var(--muted); margin-bottom: 20px; flex-grow: 1; font-weight: 300;}
-  .hookah-price { 
-    font-family: 'Playfair Display', serif; 
-    font-size: 1.6rem; 
-    color: var(--gold); 
-    display: flex; 
-    justify-content: space-between; 
-    align-items: center;
-    border-top: 1px solid rgba(255,255,255,0.05);
-    padding-top: 15px;
-  }
-  .hookah-price span { font-family: 'Inter', sans-serif; font-size: 0.75rem; color: var(--muted); text-transform: uppercase; letter-spacing: 1px; }
+  .hookah-image::after { content: ''; position: absolute; inset: 0; background: linear-gradient(to top, rgba(26, 33, 32, 1) 0%, rgba(26, 33, 32, 0) 40%); }
+  
+  .hookah-info { padding: 25px 30px 30px; flex-grow: 1; display: flex; flex-direction: column; position: relative; z-index: 2; }
+  .hookah-info h4 { font-size: 1.5rem; margin-bottom: 10px; text-align: center; }
+  .hookah-info p { font-size: 0.9rem; color: var(--muted); margin-bottom: 20px; text-align: center; font-weight: 300;}
+  .hookah-price { font-family: 'Playfair Display', serif; font-size: 2rem; color: var(--gold); display: flex; justify-content: center; align-items: center; gap: 10px; border-top: 1px solid rgba(255,255,255,0.05); padding-top: 20px; margin-top: auto;}
+  .hookah-price span { font-family: 'Inter', sans-serif; font-size: 0.8rem; color: var(--muted); text-transform: uppercase; letter-spacing: 1px; }
 
-  /* Кнопка Наверх / Футер и прочее */
+  .price-tabs{display:flex;justify-content:center;gap:15px;margin-bottom:50px;flex-wrap:wrap}
+  .prices{display:none;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:30px;align-items:center;}
+  .prices.active{display:grid !important}
+  .price-card{ background:var(--card);border:1px solid var(--border);padding:50px 40px;text-align:center; position:relative;transition:.3s; }
+  .price-card:hover{transform:translateY(-5px);border-color:rgba(200,165,102,0.3)}
+  .price-card.featured{ border-color:var(--gold);background:linear-gradient(180deg, #1a2120, rgba(200,165,102,0.05));transform:scale(1.05);z-index:2;box-shadow:0 15px 40px rgba(0,0,0,0.5); }
+  .price-card.featured:hover{transform:scale(1.05) translateY(-5px)}
+  .price-card.featured::after{ content:'Выбор экспертов';position:absolute;top:-15px;left:50%;transform:translateX(-50%); background:var(--gold);color:var(--bg);font-size:.7rem;font-weight:600;text-transform:uppercase;letter-spacing:2px;padding:6px 25px; }
+  .price-card h3{font-size:1.8rem;margin-bottom:15px;font-weight:400}
+  .price-card .price{font-family:'Playfair Display',serif;font-size:3.5rem;color:var(--gold);margin-bottom:30px;line-height:1}
+  .price-card .price small{font-family:'Inter',sans-serif;font-size:.8rem;color:var(--muted);letter-spacing:1px;font-weight:400}
+  .price-list{list-style:none;text-align:left;margin-bottom:40px;font-size:.9rem;color:var(--muted)}
+  .price-list li{padding:14px 0;border-bottom:1px solid rgba(255,255,255,0.05);display:flex;align-items:center;gap:10px}
+  .price-list li::before{content:'—';color:var(--gold);font-weight:bold}
+
   .contact-section{ background:var(--bg-soft); border-top:1px solid var(--border); position:relative; }
   .contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:stretch}
-  .contact-info{
-    background:var(--card); padding:50px; border:1px solid var(--border);
-    display:flex; flex-direction:column; justify-content:center;
-    box-shadow:0 10px 30px rgba(0,0,0,0.2);
-  }
+  .contact-info{ background:var(--card); padding:50px; border:1px solid var(--border); display:flex; flex-direction:column; justify-content:center; box-shadow:0 10px 30px rgba(0,0,0,0.2); }
   .contact-info h2{font-size:clamp(2rem,4vw,3rem);margin-bottom:25px;font-weight:400}
   .contact-info p{color:var(--muted);margin-bottom:40px;font-weight:300}
   .contact-item{margin-bottom:25px;display:flex;align-items:center;gap:15px}
   .contact-item span{font-size:.85rem;letter-spacing:1px;text-transform:uppercase;color:var(--muted);width:120px;flex-shrink:0;font-weight:500}
   .contact-item a,.contact-item strong{font-family:'Playfair Display',serif;font-size:1.6rem;color:var(--gold)}
   
-  form{
-    background:var(--card); padding:50px; 
-    border:1px solid var(--gold); 
-    box-shadow:0 0 30px rgba(200,165,102,0.15), inset 0 0 20px rgba(200,165,102,0.05); 
-    position:relative;
-  }
-  form::before{
-    content:'Оставить заявку';position:absolute;top:-15px;left:50%;transform:translateX(-50%);
-    background:var(--gold);color:var(--bg);font-size:.75rem;font-weight:600;
-    text-transform:uppercase;letter-spacing:2px;padding:5px 20px;
-  }
+  form{ background:var(--card); padding:50px; border:1px solid var(--gold); box-shadow:0 0 30px rgba(200,165,102,0.15), inset 0 0 20px rgba(200,165,102,0.05); position:relative; }
+  form::before{ content:'Оставить заявку';position:absolute;top:-15px;left:50%;transform:translateX(-50%); background:var(--gold);color:var(--bg);font-size:.75rem;font-weight:600; text-transform:uppercase;letter-spacing:2px;padding:5px 20px; }
   .field{margin-bottom:25px;position:relative}
   .field label{display:block;font-size:.75rem;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted);margin-bottom:10px;font-weight:500}
-  .field input,.field select,.field textarea{
-    width:100%;padding:15px 0;background:transparent;border:none;border-bottom:1px solid var(--border);
-    color:var(--text);font-family:'Inter',sans-serif;font-size:1rem;outline:none;transition:.3s;font-weight:300;
-  }
+  .field input,.field select,.field textarea{ width:100%;padding:15px 0;background:transparent;border:none;border-bottom:1px solid var(--border); color:var(--text);font-family:'Inter',sans-serif;font-size:1rem;outline:none;transition:.3s;font-weight:300; }
   .field input:focus,.field select:focus,.field textarea:focus{border-color:var(--gold); box-shadow: 0 1px 0 var(--gold);}
   .field select{cursor:pointer;color:var(--text)}
   .field select option{background:var(--bg);color:var(--text)}
@@ -199,25 +138,22 @@
   .legal-info p{margin-bottom:5px}
   .legal-info strong{color:var(--gold);font-weight:500}
 
-  /* MODAL */
   .modal{position:fixed;inset:0;background:rgba(0,0,0,0.85);backdrop-filter:blur(5px);display:none;place-items:center;z-index:200}
   .modal.active{display:grid}
   .modal-box{background:var(--card);padding:60px 40px;max-width:500px;width:90%;text-align:center;border:1px solid var(--gold); box-shadow:0 0 40px rgba(200,165,102,0.2);}
   .modal-box h3{font-size:2.2rem;color:var(--gold);margin-bottom:15px}
   .modal-box p{color:var(--muted);margin-bottom:30px;font-weight:300}
 
-  /* MOBILE */
   @media(max-width:992px){
     .about-grid{grid-template-columns:1fr;gap:40px}
     .contact-grid{grid-template-columns:1fr;gap:30px}
+    .price-card.featured{transform:none}
+    .price-card.featured:hover{transform:translateY(-5px)}
     form{padding:40px 30px}
     .contact-info{padding:40px 30px}
   }
   @media(max-width:768px){
-    .nav-links{
-      position:fixed;top:80px;left:0;right:0;background:var(--bg-soft);flex-direction:column;
-      padding:30px;gap:20px;text-align:center;transform:translateY(-150%);transition:.4s;border-bottom:1px solid var(--border);
-    }
+    .nav-links{position:fixed;top:80px;left:0;right:0;background:var(--bg-soft);flex-direction:column;padding:30px;gap:20px;text-align:center;transform:translateY(-150%);transition:.4s;border-bottom:1px solid var(--border);}
     .nav-links.open{transform:translateY(0)}
     .burger{display:flex}
     .nav .btn{display:none}
@@ -243,9 +179,10 @@
     <div class="burger" id="burger"><span></span><span></span><span></span></div>
   </div>
 </header>
-
 <section class="hero">
-  <canvas id="smokeCanvas"></canvas>
+  <div class="smoke-container">
+    <div class="smoke"></div><div class="smoke"></div><div class="smoke"></div><div class="smoke"></div><div class="smoke"></div>
+  </div>
   <div class="container hero-content">
     <span class="subtitle">Искусство премиального отдыха</span>
     <h1>Эксклюзивный <br><span class="gold-text">кальянный кейтеринг</span></h1>
@@ -273,8 +210,6 @@
     </div>
   </div>
 </section>
-
-<!-- КОЛЛЕКЦИЯ -->
 <section class="collection" id="collection">
   <div class="container">
     <div class="section-title">
@@ -288,29 +223,22 @@
       <button class="tab-btn" onclick="showCollection('premium')">Premium (80 BYN)</button>
       <button class="tab-btn" onclick="showCollection('vip')">VIP / Кейтеринг</button>
     </div>
-        <!-- 1. Стандарт (50 BYN) -->
+
+    <!-- 1. Стандарт (50 BYN) -->
     <div class="collection-grid active" id="col-standard">
       <div class="hookah-card">
-        <div class="hookah-image" style="background-image: url('https://images.unsplash.com/photo-1563227812-0ea4c22e6cc8?auto=format&fit=crop&w=600&q=80');"></div>
+        <div class="hookah-image" style="background-image: url('https://images.unsplash.com/photo-1563227812-0ea4c22e6cc8?auto=format&fit=crop&w=600&q=80'), radial-gradient(circle at center, rgba(200,165,102,0.2) 0%, transparent 60%);"></div>
         <div class="hookah-info">
           <h4>Alpha Hookah Model X</h4>
-          <p>Классика, проверенная временем. Легкая тяга и надежность для повседневного отдыха.</p>
+          <p>Классика, проверенная временем. Легкая тяга и надежность.</p>
           <div class="hookah-price">50 <span>BYN / сутки</span></div>
         </div>
       </div>
       <div class="hookah-card">
-        <div class="hookah-image" style="background-image: url('https://images.unsplash.com/photo-1574615588404-8a5b19a7c538?auto=format&fit=crop&w=600&q=80');"></div>
+        <div class="hookah-image" style="background-image: url('https://images.unsplash.com/photo-1574615588404-8a5b19a7c538?auto=format&fit=crop&w=600&q=80'), radial-gradient(circle at center, rgba(200,165,102,0.2) 0%, transparent 60%);"></div>
         <div class="hookah-info">
           <h4>Union Fibonacci</h4>
-          <p>Стильный дизайн и отличная продувка. Идеальный выбор для домашней вечеринки.</p>
-          <div class="hookah-price">50 <span>BYN / сутки</span></div>
-        </div>
-      </div>
-      <div class="hookah-card">
-        <div class="hookah-image" style="background-image: url('https://images.unsplash.com/photo-1543203732-1c2c115bfc1b?auto=format&fit=crop&w=600&q=80');"></div>
-        <div class="hookah-info">
-          <h4>AMY Deluxe</h4>
-          <p>Немецкое качество и устойчивая база. Проверенный временем универсал.</p>
+          <p>Стильный дизайн и отличная продувка. Идеальный выбор для дома.</p>
           <div class="hookah-price">50 <span>BYN / сутки</span></div>
         </div>
       </div>
@@ -319,7 +247,7 @@
     <!-- 2. Премиум (80 BYN) -->
     <div class="collection-grid" id="col-premium">
       <div class="hookah-card">
-        <div class="hookah-image" style="background-image: url('https://images.unsplash.com/photo-1584242616080-2314a324f291?auto=format&fit=crop&w=600&q=80');"></div>
+        <div class="hookah-image" style="background-image: url('https://images.unsplash.com/photo-1584242616080-2314a324f291?auto=format&fit=crop&w=600&q=80'), radial-gradient(circle at center, rgba(200,165,102,0.2) 0%, transparent 60%);"></div>
         <div class="hookah-info">
           <h4>Wookah Walnut</h4>
           <p>Топовый выбор. Натуральное дерево, идеальная тяга и статусный внешний вид.</p>
@@ -327,15 +255,7 @@
         </div>
       </div>
       <div class="hookah-card">
-        <div class="hookah-image" style="background-image: url('https://images.unsplash.com/photo-1594322436404-5a0526db4d13?auto=format&fit=crop&w=600&q=80');"></div>
-        <div class="hookah-info">
-          <h4>Steamulation Pro X</h4>
-          <p>Инженерный шедевр. Плавная регулировка тяги и непревзойденный вкус.</p>
-          <div class="hookah-price">80 <span>BYN / сутки</span></div>
-        </div>
-      </div>
-      <div class="hookah-card">
-        <div class="hookah-image" style="background-image: url('https://images.unsplash.com/photo-1518083220123-553d6e6a1c9c?auto=format&fit=crop&w=600&q=80');"></div>
+        <div class="hookah-image" style="background-image: url('https://images.unsplash.com/photo-1518083220123-553d6e6a1c9c?auto=format&fit=crop&w=600&q=80'), radial-gradient(circle at center, rgba(200,165,102,0.2) 0%, transparent 60%);"></div>
         <div class="hookah-info">
           <h4>Oduman N5</h4>
           <p>Стекло и металл. Очень часто заказывают на стильные вечеринки.</p>
@@ -344,38 +264,38 @@
       </div>
     </div>
 
-    <!-- 3. VIP / Кейтеринг (Свадьбы и Вечеринки) -->
-    <div class="collection-grid" id="col-vip" style="grid-template-columns: 1fr 1fr; gap: 30px;">
+    <!-- 3. VIP / Кейтеринг -->
+    <div class="collection-grid" id="col-vip" style="grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));">
       
       <!-- Свадьбы -->
       <div class="hookah-card" style="border-color: var(--gold);">
-        <div class="hookah-image" style="background-image: url('https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=600&q=80'); height: 250px;">
+        <div class="hookah-image" style="background-image: url('https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=600&q=80'), radial-gradient(circle at center, rgba(200,165,102,0.2) 0%, transparent 60%); height: 250px;">
           <div style="position: absolute; bottom: 15px; left: 20px; background: var(--bg); padding: 5px 15px; border: 1px solid var(--gold); color: var(--gold); font-size: 0.8rem; letter-spacing: 2px; text-transform: uppercase; z-index: 10;">Свадьбы</div>
         </div>
-        <div class="hookah-info">
-          <h4>Maklaud Dzen & Alpha X</h4>
-          <p style="margin-bottom: 15px;">Эксклюзивная кальянная зона для вашего торжества. Мы привезем топовые модели (Maklaud, Alpha X), которые идеально впишутся в декор. Мастера работают незаметно, создавая комфорт для каждого гостя. Идеальный дым и фото, которые будут выглядеть дорого.</p>
-          <ul class="price-list" style="margin-bottom: 20px; font-size: 0.8rem;">
-            <li>Фотозона с кальянами</li>
+        <div class="hookah-info" style="text-align: left;">
+          <h4 style="text-align: left;">Maklaud & Alpha X</h4>
+          <p style="text-align: left; margin-bottom: 15px;">Создадим невероятную атмосферу на вашей свадьбе. Премиальные модели, которые идеально впишутся в декор. Гости будут в восторге, а фото получатся по-настоящему роскошными.</p>
+          <ul class="price-list" style="margin-bottom: 20px; font-size: 0.85rem;">
             <li>2 мастера на весь вечер</li>
+            <li>Индивидуальный подход</li>
           </ul>
-          <div class="hookah-price" style="border-top: none;">В пакете <span>С мастером</span></div>
+          <div class="hookah-price" style="border-top: none; justify-content: space-between;">В пакете <span>С мастером</span></div>
         </div>
       </div>
 
       <!-- Частные вечеринки -->
       <div class="hookah-card" style="border-color: #4a5a58;">
-        <div class="hookah-image" style="background-image: url('https://images.unsplash.com/photo-1590059355158-314e6dbe77e6?auto=format&fit=crop&w=600&q=80'); height: 250px;">
+        <div class="hookah-image" style="background-image: url('https://images.unsplash.com/photo-1590059355158-314e6dbe77e6?auto=format&fit=crop&w=600&q=80'), radial-gradient(circle at center, rgba(200,165,102,0.2) 0%, transparent 60%); height: 250px;">
            <div style="position: absolute; bottom: 15px; left: 20px; background: var(--bg); padding: 5px 15px; border: 1px solid #4a5a58; color: #9ca3a1; font-size: 0.8rem; letter-spacing: 2px; text-transform: uppercase; z-index: 10;">Частные вечеринки</div>
         </div>
-        <div class="hookah-info">
-          <h4>B2 Hookah / Необычные модели</h4>
-          <p style="margin-bottom: 15px;">Для тех, кто хочет удивить гостей. Привезем необычные, редкие модели (B2, Oduman, стекло/металл), которые станут центром внимания на вашей закрытой вечеринке в коттедже или на природе.</p>
-          <ul class="price-list" style="margin-bottom: 20px; font-size: 0.8rem;">
-            <li>Редкие модели в наличии</li>
+        <div class="hookah-info" style="text-align: left;">
+          <h4 style="text-align: left;">B2 Hookah / Премиум</h4>
+          <p style="text-align: left; margin-bottom: 15px;">Для тех, кто хочет удивить гостей. Привезем стильные и необычные модели, которые станут центром внимания на вашей закрытой вечеринке в коттедже или на природе.</p>
+          <ul class="price-list" style="margin-bottom: 20px; font-size: 0.85rem;">
             <li>Выезд на природу / коттедж</li>
+            <li>Полная конфиденциальность</li>
           </ul>
-          <div class="hookah-price" style="border-top: none;">В пакете <span>С мастером</span></div>
+          <div class="hookah-price" style="border-top: none; justify-content: space-between;">В пакете <span>С мастером</span></div>
         </div>
       </div>
 
@@ -383,41 +303,6 @@
 
   </div>
 </section>
-
-<section id="services">
-  <div class="container">
-    <div class="section-title">
-      <span class="subtitle">Форматы</span>
-      <h2>События, которые мы <span class="gold-text">обслуживаем</span></h2>
-    </div>
-    <div class="services-grid">
-      <div class="service-card">
-        <h3>Свадьбы</h3>
-        <p>Элегантная зона отдыха, которая станет изюминкой вечера. Мастера работают незаметно, создавая комфорт для каждого гостя.</p>
-      </div>
-      <div class="service-card">
-        <h3>Корпоративы</h3>
-        <p>Статусный отдых для вашей команды и партнеров. Индивидуальный подход, премиальное оборудование и высочайший уровень сервиса.</p>
-      </div>
-      <div class="service-card">
-        <h3>Частные вечеринки</h3>
-        <p>Выездное обслуживание на коттеджах, загородных домах, природе или в любом удобном для вас месте. Полная конфиденциальность и VIP-обслуживание.</p>
-      </div>
-    </div>
-  </div>
-</section>
-<section id="prices" style="background:var(--bg-soft); border-top:1px solid var(--border); border-bottom:1px solid var(--border);">
-  <div class="container">
-    <div class="section-title">
-      <span class="subtitle">Стоимость</span>
-      <h2>Выберите свой <span class="gold-text">формат</span></h2>
-    </div>
-
-    <div class="price-tabs">
-      <button class="tab-btn active" onclick="showPrices('catering')">С мастером (под ключ)</button>
-      <button class="tab-btn" onclick="showPrices('rental')">Прокат без мастера</button>
-    </div>
-
     <!-- Вкладка 1: С мастером -->
     <div class="prices active" id="tab-catering" style="display: grid; grid-template-columns: repeat(auto-fit,minmax(320px,1fr)); gap: 30px; align-items: center;">
       <div class="price-card">
@@ -432,7 +317,7 @@
         <a href="#contact" class="btn" style="width:100%;">Выбрать</a>
       </div>
       
-      <div class="price-card featured" style="border-color:var(--gold); background:linear-gradient(180deg, #1a2120, rgba(200,165,102,0.05)); transform:scale(1.05); z-index:2; box-shadow:0 15px 40px rgba(0,0,0,0.5);">
+      <div class="price-card featured">
         <h3>Exclusive</h3>
         <div class="price">800 <small>BYN</small></div>
         <ul class="price-list">
@@ -440,7 +325,7 @@
           <li>6 кальянов премиум-класса</li>
           <li>Индивидуальное обслуживание гостей</li>
           <li>2 кальянных мастера</li>
-          <li>Фотозона с кальянами</li>
+          <li>Премиальное обслуживание гостей</li> <!-- Убрали фотозону -->
         </ul>
         <a href="#contact" class="btn btn-solid" style="width:100%;">Выбрать</a>
       </div>
@@ -525,7 +410,6 @@
     
   </div>
 </section>
-
 <footer>
   <div class="container">
     <div style="font-family:'Playfair Display',serif; font-size:1.5rem; color:var(--gold); margin-bottom:15px;">LUXE HOOKAH</div>
@@ -546,70 +430,8 @@
     <button class="btn btn-solid" id="closeModal" style="width:100%;">Отлично</button>
   </div>
 </div>
+
 <script>
-  // --- ЛОГИКА ДЫМА НА CANVAS ---
-  const canvas = document.getElementById('smokeCanvas');
-  const ctx = canvas.getContext('2d');
-  let width, height;
-  let particles = [];
-
-  function resize() {
-    width = canvas.width = window.innerWidth;
-    height = canvas.height = canvas.offsetHeight;
-  }
-  window.addEventListener('resize', resize);
-  resize();
-
-  class Smoke {
-    constructor() {
-      this.reset();
-      this.y = Math.random() * height; 
-    }
-    reset() {
-      this.x = Math.random() * width;
-      this.y = height + 50;
-      this.size = Math.random() * 150 + 50; 
-      this.speedY = -(Math.random() * 0.8 + 0.3); 
-      this.speedX = Math.random() * 0.6 - 0.3; 
-      this.opacity = Math.random() * 0.08 + 0.02; 
-      this.life = 1;
-    }
-    update() {
-      this.y += this.speedY;
-      this.x += this.speedX;
-      this.life -= 0.002;
-      
-      if (this.y < -this.size || this.life <= 0) {
-        this.reset();
-      }
-    }
-    draw() {
-      ctx.beginPath();
-      let gradient = ctx.createRadialGradient(this.x, this.y, 0, this.x, this.y, this.size);
-      gradient.addColorStop(0, `rgba(200, 165, 102, ${this.opacity * this.life})`); 
-      gradient.addColorStop(1, `rgba(200, 165, 102, 0)`);
-      
-      ctx.fillStyle = gradient;
-      ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-      ctx.fill();
-    }
-  }
-
-  for (let i = 0; i < 40; i++) {
-    particles.push(new Smoke());
-  }
-
-  function animateSmoke() {
-    ctx.clearRect(0, 0, width, height);
-    particles.forEach(p => {
-      p.update();
-      p.draw();
-    });
-    requestAnimationFrame(animateSmoke);
-  }
-  animateSmoke();
-  // --- КОНЕЦ ЛОГИКИ ДЫМА ---
-
   // Мобильное меню
   const burger = document.getElementById('burger');
   const navLinks = document.getElementById('navLinks');
