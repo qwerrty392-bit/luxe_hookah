@@ -44,13 +44,9 @@
   /* ГЛАВНЫЙ ЭКРАН */
   .hero{min-height:100vh;display:flex;align-items:center;justify-content:center;text-align:center;position:relative;background:linear-gradient(rgba(13,17,16,0.85), rgba(13,17,16,0.95)), url('https://images.unsplash.com/photo-1584242616080-2314a324f291?auto=format&fit=crop&w=1920&q=80') center/cover no-repeat;padding:150px 0 100px;overflow:hidden;}
   
-  /* Холст для дыма */
   #smokeCanvas {
-    position: absolute;
-    top: 0; left: 0;
-    width: 100%; height: 100%;
-    pointer-events: none;
-    z-index: 1;
+    position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+    pointer-events: none; z-index: 1;
   }
 
   .hero-content{max-width:800px; position: relative; z-index: 2; margin: 0 auto;}
@@ -170,6 +166,23 @@
     .nav .btn{display:none}
     .hero h1{font-size:2.5rem}
     section{padding:80px 0}
+    
+    /* ИСПРАВЛЕНИЕ ДЛЯ МОБИЛЬНЫХ */
+    .contact-grid {
+      grid-template-columns: 1fr;
+      gap: 20px;
+    }
+    .contact-info, form {
+      padding: 30px 20px;
+    }
+    .contact-item {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 5px;
+    }
+    .contact-item span {
+      width: auto;
+    }
   }
 </style>
 </head>
@@ -244,7 +257,6 @@
       this.speedX = Math.random() * 2 - 1;
       this.speedY = Math.random() * 2 - 1;
       this.opacity = 0.5;
-      this.life = 1;
     }
     update() {
       this.x += this.speedX; this.y += this.speedY;
@@ -261,14 +273,28 @@
     }
   }
 
+  function createSmoke(x, y) {
+    for (let i = 0; i < 3; i++) {
+      particles.push(new Particle(x, y));
+    }
+  }
+
+  // Для компьютера
   window.addEventListener('mousemove', (e) => {
     let rect = canvas.getBoundingClientRect();
     let mouseX = e.clientX - rect.left;
     let mouseY = e.clientY - rect.top;
-    for (let i = 0; i < 3; i++) {
-      particles.push(new Particle(mouseX, mouseY));
-    }
+    createSmoke(mouseX, mouseY);
   });
+
+  // Для телефона
+  window.addEventListener('touchmove', (e) => {
+    let rect = canvas.getBoundingClientRect();
+    let touch = e.touches[0];
+    let touchX = touch.clientX - rect.left;
+    let touchY = touch.clientY - rect.top;
+    createSmoke(touchX, touchY);
+  }, { passive: true });
 
   function animate() {
     ctx.clearRect(0, 0, width, height);
