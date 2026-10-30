@@ -41,32 +41,27 @@
   .burger{display:none;flex-direction:column;gap:6px;cursor:pointer}
   .burger span{width:30px;height:1px;background:var(--gold);transition:0.3s}
 
-  /* ГЛАВНЫЙ ЭКРАН С ЯРКИМ ДЫМОМ */
+  /* ГЛАВНЫЙ ЭКРАН С НАСТОЯЩИМ ДЫМОМ */
   .hero{min-height:100vh;display:flex;align-items:center;justify-content:center;text-align:center;position:relative;background:linear-gradient(rgba(13,17,16,0.85), rgba(13,17,16,0.95)), url('https://images.unsplash.com/photo-1584242616080-2314a324f291?auto=format&fit=crop&w=1920&q=80') center/cover no-repeat;padding:150px 0 100px;overflow:hidden;}
   
-  .smoke-container {position: absolute; bottom: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 1; overflow: hidden;}
-  .smoke {
-    position: absolute; bottom: -150px;
-    background: radial-gradient(circle, rgba(240,220,168,0.6) 0%, rgba(200,165,102,0.3) 40%, rgba(200,165,102,0) 70%);
-    border-radius: 50%;
-    filter: blur(35px);
-    animation: rise 12s infinite ease-in;
-  }
-  .smoke:nth-child(1) { left: 5%; width: 500px; height: 500px; animation-duration: 12s; animation-delay: 0s; }
-  .smoke:nth-child(2) { left: 25%; width: 600px; height: 600px; animation-duration: 15s; animation-delay: 2s; }
-  .smoke:nth-child(3) { left: 45%; width: 550px; height: 550px; animation-duration: 13s; animation-delay: 4s; }
-  .smoke:nth-child(4) { left: 65%; width: 700px; height: 700px; animation-duration: 18s; animation-delay: 1s; }
-  .smoke:nth-child(5) { left: 85%; width: 450px; height: 450px; animation-duration: 11s; animation-delay: 5s; }
+  .smoke-container {position: absolute; bottom: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 1; overflow: hidden; opacity: 0.7;}
   
-  /* Дополнительные частицы для мобильных */
-  .smoke:nth-child(6) { left: 15%; width: 550px; height: 550px; animation-duration: 14s; animation-delay: 7s; }
-  .smoke:nth-child(7) { left: 75%; width: 600px; height: 600px; animation-duration: 16s; animation-delay: 3s; }
+  .smoke-layer {
+    position: absolute; bottom: -20%; width: 100%; height: 120%;
+    background-image: url('https://cdn.pixabay.com/photo/2017/03/15/20/10/smoke-2147885_960_720.png');
+    background-size: cover; background-position: center bottom; background-repeat: no-repeat;
+    filter: sepia(100%) hue-rotate(5deg) saturate(200%) brightness(0.8);
+    animation: smokeRise 20s infinite linear;
+  }
+  .smoke-layer:nth-child(1) { animation-duration: 25s; opacity: 0.4; transform: scale(1.2); }
+  .smoke-layer:nth-child(2) { animation-duration: 35s; animation-delay: 5s; opacity: 0.6; transform: scale(1.5) rotate(5deg); }
+  .smoke-layer:nth-child(3) { animation-duration: 20s; animation-delay: 2s; opacity: 0.3; transform: scale(1) rotate(-5deg); }
 
-  @keyframes rise {
+  @keyframes smokeRise {
     0% { transform: translateY(0) scale(1); opacity: 0; }
     10% { opacity: 1; }
-    80% { opacity: 0.6; }
-    100% { transform: translateY(-120vh) scale(1.8); opacity: 0; }
+    80% { opacity: 0.8; }
+    100% { transform: translateY(-50vh) scale(1.3); opacity: 0; }
   }
 
   .hero-content{max-width:800px; position: relative; z-index: 2; margin: 0 auto;}
@@ -178,10 +173,7 @@
     .price-card.featured{transform:none}
     .price-card.featured:hover{transform:translateY(-5px)}
     form, .contact-info{padding:30px}
-    /* На планшетах и телефонах дым остается, но частицы чуть меньше */
-    .smoke { filter: blur(25px); }
-    .smoke:nth-child(4) { display: none; }
-    .smoke:nth-child(6) { display: none; }
+    .smoke-layer { opacity: 0.3; }
   }
   @media(max-width:768px){
     .nav-links{position:fixed;top:80px;left:0;right:0;background:var(--bg-soft);flex-direction:column;padding:30px;gap:20px;text-align:center;transform:translateY(-150%);transition:.4s;border-bottom:1px solid var(--border);}
@@ -190,12 +182,7 @@
     .nav .btn{display:none}
     .hero h1{font-size:2.5rem}
     section{padding:80px 0}
-    /* Дым на мобильных */
-    .smoke-container { display: block; opacity: 0.7; }
-    .smoke { filter: blur(20px); }
-    .smoke:nth-child(2) { display: none; }
-    .smoke:nth-child(5) { display: none; }
-    .smoke:nth-child(7) { display: none; }
+    .smoke-container { opacity: 0.5; }
   }
 </style>
 </head>
@@ -217,13 +204,9 @@
 
 <section class="hero">
   <div class="smoke-container">
-    <div class="smoke"></div>
-    <div class="smoke"></div>
-    <div class="smoke"></div>
-    <div class="smoke"></div>
-    <div class="smoke"></div>
-    <div class="smoke"></div>
-    <div class="smoke"></div>
+    <div class="smoke-layer"></div>
+    <div class="smoke-layer"></div>
+    <div class="smoke-layer"></div>
   </div>
 
   <div class="container hero-content">
@@ -450,6 +433,7 @@
     </div>
   </div>
 </section>
+
 <section class="contact-section" id="contact">
   <div class="container contact-grid">
     
@@ -496,7 +480,6 @@
     
   </div>
 </section>
-
 <footer>
   <div class="container">
     <div style="font-family:'Playfair Display',serif; font-size:1.5rem; color:var(--gold); margin-bottom:15px;">LUXE HOOKAH</div>
