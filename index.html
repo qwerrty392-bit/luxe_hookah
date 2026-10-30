@@ -8,7 +8,11 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
 <style>
-  :root{--bg:#0d1110;--bg-soft:#141a19;--card:#1a2120;--gold:#c8a566;--gold-light:#f0dca8;--text:#f4f5f4;--muted:#9ca3a1;--border:rgba(200,165,102,0.15);}
+  :root{
+    --bg:#0d1110; --bg-soft:#141a19; --card:#1a2120;
+    --gold:#c8a566; --gold-light:#f0dca8; --text:#f4f5f4;
+    --muted:#9ca3a1; --border:rgba(200,165,102,0.15);
+  }
   *{margin:0;padding:0;box-sizing:border-box}
   html{scroll-behavior:smooth}
   body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);line-height:1.7;overflow-x:hidden;-webkit-font-smoothing:antialiased;}
@@ -19,6 +23,7 @@
   .gold-text{color:var(--gold)}
   .subtitle{font-size:.75rem;letter-spacing:4px;text-transform:uppercase;color:var(--gold);display:block;margin-bottom:15px;font-weight:500}
 
+  /* ШАПКА */
   header{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(13,17,16,.85);backdrop-filter:blur(15px);border-bottom:1px solid var(--border);transition:0.3s;}
   .nav{display:flex;align-items:center;justify-content:space-between;padding:20px 0;gap:20px}
   .logo{font-size:1.8rem;font-weight:700;letter-spacing:2px}
@@ -51,11 +56,17 @@
   .hero p{font-size:1.1rem;color:var(--muted);margin-bottom:45px;font-weight:300;line-height:1.8; text-shadow: 0 2px 10px rgba(0,0,0,0.8);}
   .hero-actions{display:flex;gap:20px;flex-wrap:wrap; justify-content:center;}
   
+  /* Анимация пульсации для плашки 24/7 */
+  .pulse-badge {display: inline-block; background: rgba(200,165,102,0.15); border: 1px solid var(--gold); padding: 15px 30px; border-radius: 8px; animation: pulse 2s infinite; margin-top: 20px;}
+  .pulse-badge p {margin: 0; color: var(--gold-light); font-weight: 500; font-size: 1.1rem; letter-spacing: 1px;}
+  @keyframes pulse {0% { box-shadow: 0 0 0 0 rgba(200, 165, 102, 0.4); }70% { box-shadow: 0 0 0 15px rgba(200, 165, 102, 0); }100% { box-shadow: 0 0 0 0 rgba(200, 165, 102, 0); }}
+
   section{padding:100px 0}
   .section-title{text-align:center;margin-bottom:60px}
   .section-title h2{font-size:clamp(2rem,4vw,3.5rem);margin-bottom:20px;font-weight:400}
   .section-title p{color:var(--muted);max-width:600px;margin-inline:auto;font-weight:300}
-    .info-grid{display:grid;grid-template-columns:1fr 1fr;gap:30px;}
+    /* ДОСТАВКА / АКЦИИ */
+  .info-grid{display:grid;grid-template-columns:1fr 1fr;gap:30px;}
   .info-card{background:var(--card);border:1px solid var(--border);padding:40px;transition:.3s; text-align: left;}
   .info-card:hover{border-color:var(--gold);transform:translateY(-5px);}
   .info-card h3{font-size:1.6rem;color:var(--gold);margin-bottom:20px;}
@@ -65,6 +76,7 @@
   .promo-price {font-family:'Playfair Display', serif; font-size: 2rem; color: var(--gold); margin-top: 20px; display:flex; align-items:center; gap: 15px;}
   .old-price {text-decoration: line-through; color: var(--muted); font-size: 1.2rem; font-family:'Inter',sans-serif;}
 
+  /* КОЛЛЕКЦИЯ */
   .collection { background: var(--bg); border-top: 1px solid var(--border); }
   .tabs-container { display: flex; justify-content: center; gap: 15px; margin-bottom: 50px; flex-wrap: wrap; }
   .tab-btn{background:transparent;border:1px solid var(--border);color:var(--muted);padding:12px 30px;font-family:'Inter',sans-serif;font-size:.85rem;font-weight:500;letter-spacing:1px;text-transform:uppercase;cursor:pointer;transition:.3s;}
@@ -84,6 +96,7 @@
   .hookah-price { font-family: 'Playfair Display', serif; font-size: 2rem; color: var(--gold); display: flex; justify-content: center; align-items: center; gap: 10px; border-top: 1px solid rgba(255,255,255,0.05); padding-top: 20px; margin-top: auto;}
   .hookah-price span { font-family: 'Inter', sans-serif; font-size: 0.8rem; color: var(--muted); text-transform: uppercase; letter-spacing: 1px; }
 
+  /* ЦЕНЫ */
   .prices{display:none;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:30px;align-items:center;}
   .prices.active{display:grid !important}
   .price-card{ background:var(--card);border:1px solid var(--border);padding:50px 40px;text-align:center; position:relative;transition:.3s; }
@@ -98,11 +111,13 @@
   .price-list li{padding:14px 0;border-bottom:1px solid rgba(255,255,255,0.05);display:flex;align-items:center;gap:10px}
   .price-list li::before{content:'—';color:var(--gold);font-weight:bold}
 
+  /* ДОГОВОР */
   .contract-box {background:var(--bg-soft); border:1px solid var(--gold); padding:40px; text-align:center; margin-top: 40px;}
   .contract-box h3 {font-size:1.8rem; color:var(--gold); margin-bottom:15px;}
   .contract-box p {color:var(--muted); margin-bottom:25px;}
   .contract-actions {display: flex; gap: 20px; justify-content: center; flex-wrap: wrap;}
 
+  /* КОНТАКТЫ */
   .contact-section{ background:var(--bg-soft); border-top:1px solid var(--border); }
   .contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:stretch}
   .contact-info{ background:var(--card); padding:50px; border:1px solid var(--border); display:flex; flex-direction:column; justify-content:center; box-shadow:0 10px 30px rgba(0,0,0,0.2); text-align: left;}
@@ -179,10 +194,17 @@
     <span class="subtitle">Искусство премиального отдыха</span>
     <h1>Эксклюзивный <br><span class="gold-text">кальянный кейтеринг</span></h1>
     <p>Создаем атмосферу роскоши на ваших мероприятиях. Премиальное оборудование и безупречный сервис от личных мастеров.</p>
-    <div class="hero-actions">
+    
+    <div class="hero-actions" style="margin-bottom: 30px; justify-content: center;">
       <a href="#contact" class="btn btn-solid">Обсудить мероприятие</a>
       <a href="#collection" class="btn">Выбрать кальян</a>
+      <a href="#prices" class="btn" style="border-color: var(--gold-light); color: var(--gold-light); background: rgba(200,165,102,0.1);">Обычная аренда (от 50 BYN)</a>
     </div>
+
+    <div class="pulse-badge">
+      <p>🚚 Доставка <strong>24/7 без выходных</strong> по Минску</p>
+    </div>
+
   </div>
 </section>
 <section id="delivery" style="background:var(--bg); border-bottom:1px solid var(--border);">
@@ -225,7 +247,7 @@
     <!-- СТАНДАРТ -->
     <div class="collection-grid active" id="col-standard">
       <div class="hookah-card">
-        <div class="hookah-image" style="background-image: url('https://images.pexels.com/photos/11592811/pexels-photo-11592811.jpeg?auto=compress&cs=tinysrgb&w=600');"></div>
+        <div class="hookah-image" style="background-image: url('https://images.unsplash.com/photo-1584242616080-2314a324f291?auto=format&fit=crop&w=600&q=80');"></div>
         <div class="hookah-info">
           <h4>Кальян Стандарт</h4>
           <p>Классика, проверенная временем. Легкая тяга и надежность.</p>
@@ -233,7 +255,7 @@
         </div>
       </div>
       <div class="hookah-card">
-        <div class="hookah-image" style="background-image: url('https://images.pexels.com/photos/12703128/pexels-photo-12703128.jpeg?auto=compress&cs=tinysrgb&w=600');"></div>
+        <div class="hookah-image" style="background-image: url('https://images.unsplash.com/photo-1563227812-0ea4c22e6cc8?auto=format&fit=crop&w=600&q=80');"></div>
         <div class="hookah-info">
           <h4>Кальян Классик</h4>
           <p>Стильный дизайн и отличная продувка. Идеальный выбор для дома.</p>
@@ -245,7 +267,7 @@
     <!-- ПРЕМИУМ -->
     <div class="collection-grid" id="col-premium">
       <div class="hookah-card">
-        <div class="hookah-image" style="background-image: url('https://images.pexels.com/photos/7598304/pexels-photo-7598304.jpeg?auto=compress&cs=tinysrgb&w=600');"></div>
+        <div class="hookah-image" style="background-image: url('https://images.unsplash.com/photo-1518083220123-553d6e6a1c9c?auto=format&fit=crop&w=600&q=80');"></div>
         <div class="hookah-info">
           <h4>Кальян Премиум</h4>
           <p>Топовый выбор. Натуральное дерево, идеальная тяга и статусный внешний вид.</p>
@@ -253,7 +275,7 @@
         </div>
       </div>
       <div class="hookah-card">
-        <div class="hookah-image" style="background-image: url('https://images.pexels.com/photos/10815405/pexels-photo-10815405.jpeg?auto=compress&cs=tinysrgb&w=600');"></div>
+        <div class="hookah-image" style="background-image: url('https://images.unsplash.com/photo-1594322436404-5a0526db4d13?auto=format&fit=crop&w=600&q=80');"></div>
         <div class="hookah-info">
           <h4>Кальян Люкс</h4>
           <p>Стекло и металл. Очень часто заказывают на стильные вечеринки.</p>
@@ -264,10 +286,9 @@
 
     <!-- VIP / КЕЙТЕРИНГ -->
     <div class="collection-grid" id="col-vip">
-      
       <!-- Свадьбы -->
       <div class="hookah-card" style="border-color: var(--gold);">
-        <div class="hookah-image" style="background-image: url('https://images.pexels.com/photos/1045541/pexels-photo-1045541.jpeg?auto=compress&cs=tinysrgb&w=600'); height: 250px;">
+        <div class="hookah-image" style="background-image: url('https://images.unsplash.com/photo-1574615588404-8a5b19a7c538?auto=format&fit=crop&w=600&q=80'); height: 250px;">
           <div style="position: absolute; bottom: 15px; left: 20px; background: var(--bg); padding: 5px 15px; border: 1px solid var(--gold); color: var(--gold); font-size: 0.8rem; letter-spacing: 2px; text-transform: uppercase; z-index: 10;">Свадьбы</div>
         </div>
         <div class="hookah-info" style="text-align: left;">
@@ -282,9 +303,9 @@
       </div>
 
       <!-- Вечеринки -->
-      <div class="hookah-card" style="border-color: #4a5a58;">
-        <div class="hookah-image" style="background-image: url('https://images.pexels.com/photos/1267697/pexels-photo-1267697.jpeg?auto=compress&cs=tinysrgb&w=600'); height: 250px;">
-           <div style="position: absolute; bottom: 15px; left: 20px; background: var(--bg); padding: 5px 15px; border: 1px solid #4a5a58; color: #9ca3a1; font-size: 0.8rem; letter-spacing: 2px; text-transform: uppercase; z-index: 10;">Вечеринки</div>
+      <div class="hookah-card" style="border-color: var(--gold);">
+        <div class="hookah-image" style="background-image: url('https://images.unsplash.com/photo-1590059355158-314e6dbe77e6?auto=format&fit=crop&w=600&q=80'); height: 250px;">
+           <div style="position: absolute; bottom: 15px; left: 20px; background: var(--bg); padding: 5px 15px; border: 1px solid var(--gold); color: var(--gold); font-size: 0.8rem; letter-spacing: 2px; text-transform: uppercase; z-index: 10;">Вечеринки</div>
         </div>
         <div class="hookah-info" style="text-align: left;">
           <h4 style="text-align: left;">Вечериночный формат</h4>
@@ -349,7 +370,7 @@
       </div>
     </div>
 
-    <!-- Вкладка 2: Прокат (Оставляем ТОЛЬКО одну карточку за 50) -->
+    <!-- Вкладка 2: Прокат -->
     <div class="prices" id="tab-rental">
       <div class="price-card" style="max-width: 600px; margin: 0 auto; grid-column: 1 / -1;">
         <h3>Прокат оборудования</h3>
@@ -425,7 +446,6 @@
     
   </div>
 </section>
-
 <footer>
   <div class="container">
     <div style="font-family:'Playfair Display',serif; font-size:1.5rem; color:var(--gold); margin-bottom:15px;">LUXE HOOKAH</div>
@@ -441,26 +461,60 @@
 <!-- Модалка для чтения договора -->
 <div class="modal" id="contractModal">
   <div class="modal-box">
-    <h3>Договор аренды</h3>
+    <h3>Договор аренды оборудования</h3>
+    
     <div class="contract-text">
+      <p style="text-align: right; margin-bottom: 20px;">г. Минск &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; «___» _________ 20__ г.</p>
+      
+      <p><strong>ИП Салацкий Владислав Владимирович</strong> (УНП 693462668), действующий на основании свидетельства о государственной регистрации, именуемый в дальнейшем «Арендодатель», с одной стороны, и</p>
+      
+      <p style="margin-top: 15px; padding: 10px; border: 1px dashed var(--gold);">
+        <em>(Для физического лица)</em><br>
+        Гражданин(ка) ______________________________________________________,<br>
+        паспорт: серия ______ № ______________, выдан _________________________,<br>
+        дата выдачи _______________, адрес регистрации: ______________________________,<br>
+        телефон: _________________________
+      </p>
+
+      <p style="margin-top: 15px; padding: 10px; border: 1px dashed var(--gold);">
+        <em>(Для юридического лица / ИП)</em><br>
+        ______________________________________________________ (наименование),<br>
+        в лице ___________________________________ (должность, ФИО), действующего на основании ________________________,<br>
+        УНП: ____________________, адрес: ___________________________________,<br>
+        р/с: ________________________________ в банке _____________________________,<br>
+        телефон: _________________________
+      </p>
+
+      <p>именуемый в дальнейшем «Арендатор», с другой стороны, заключили настоящий договор о нижеследующем:</p>
+
       <h4>1. ПРЕДМЕТ ДОГОВОРА</h4>
       <p>1.1. Арендодатель предоставляет Арендатору во временное владение и пользование кальянное оборудование (далее — Оборудование), а Арендатор обязуется принять его, использовать по назначению и вернуть в исправном состоянии.</p>
-      <p>1.2. Перечень, количество и стоимость Оборудования указываются в Акте приема-передачи, являющемся неотъемлемой частью настоящего Договора.</p>
-      
+      <p>1.2. Перечень, количество и стоимость Оборудования: _____________________________________________________________________.</p>
+
       <h4>2. СРОК АРЕНДЫ И ПОРЯДОК РАСЧЕТОВ</h4>
-      <p>2.1. Срок аренды составляет: _______________________________.</p>
+      <p>2.1. Срок аренды составляет: с «___» _________ 20__ г. по «___» _________ 20__ г.</p>
       <p>2.2. Стоимость аренды составляет: ___________________ BYN.</p>
-      <p>2.3. Оплата производится в следующем порядке (наличными / безналичным переводом / картой): __________________________________.</p>
-      
+      <p>2.3. Оплата производится в следующем порядке: __________________________________.</p>
+      <p>2.4. При необходимости вносится залоговая стоимость в размере: ___________ BYN.</p>
+
       <h4>3. ПРАВА И ОБЯЗАННОСТИ СТОРОН</h4>
       <p>3.1. Арендодатель обязуется передать Арендатору Оборудование в исправном состоянии.</p>
       <p>3.2. Арендатор обязуется бережно относиться к Оборудованию, не передавать его третьим лицам без согласия Арендодателя.</p>
       <p>3.3. В случае поломки или утери Оборудования по вине Арендатора, последний возмещает полную стоимость ущерба.</p>
+
+      <h4>4. РЕКВИЗИТЫ И ПОДПИСИ СТОРОН</h4>
+      <p><strong>Арендодатель:</strong><br>
+      ИП Салацкий Владислав Владимирович<br>
+      УНП: 693462668<br>
+      Тел: +375 (25) 643-96-32<br><br>
+      ______________ / Салацкий В.В. /</p>
       
-      <h4>4. ДОПОЛНИТЕЛЬНЫЕ УСЛОВИЯ</h4>
-      <p>4.1. Настоящий Договор составлен в двух экземплярах, имеющих равную юридическую силу.</p>
-      <p>4.2. Все споры разрешаются в соответствии с законодательством Республики Беларусь.</p>
+      <p><strong>Арендатор:</strong><br><br>
+      _____________________________<br>
+      _____________________________<br>
+      ______________ / _____________ /</p>
     </div>
+    
     <button class="btn btn-solid" id="closeContractModal" style="width:100%;">Закрыть</button>
   </div>
 </div>
@@ -472,13 +526,21 @@
   burger.addEventListener('click', () => navLinks.classList.toggle('open'));
   navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => navLinks.classList.remove('open')));
 
-  // Переключение цен (Исправлено: скрывает карточки полностью)
+  // Переключение цен (Исправлено)
   function showPrices(tabName) {
-    document.querySelectorAll('.prices').forEach(el => el.style.display = 'none');
+    document.querySelectorAll('.prices').forEach(el => {
+      el.style.display = 'none';
+      el.classList.remove('active');
+    });
     document.querySelectorAll('.tabs-container .tab-btn').forEach(el => el.classList.remove('active'));
     
-    // Показываем нужную вкладку
-    document.getElementById('tab-' + tabName).style.display = (tabName === 'catering') ? 'grid' : 'block';
+    const activeTab = document.getElementById('tab-' + tabName);
+    if (tabName === 'catering') {
+      activeTab.style.display = 'grid';
+    } else {
+      activeTab.style.display = 'block';
+    }
+    activeTab.classList.add('active');
     event.currentTarget.classList.add('active');
   }
 
@@ -492,12 +554,34 @@
     event.currentTarget.classList.add('active');
   }
 
-  // Форма
+  // ОТПРАВКА ФОРМЫ В TELEGRAM
   const form = document.getElementById('leadForm');
-  form.addEventListener('submit', e => {
+  form.addEventListener('submit', async (e) => {
     e.preventDefault();
-    alert('Заявка успешно отправлена! Мы свяжемся с вами.');
-    form.reset();
+
+    const name = form.querySelector('input[type="text"]').value;
+    const phone = form.querySelector('input[type="tel"]').value;
+    const eventType = form.querySelector('select').value;
+
+    const text = `🔥 Новая заявка с сайта LUXE HOOKAH!\n\n👤 Имя: ${name}\n📞 Телефон: ${phone}\n🎉 Формат: ${eventType}`;
+
+    const botToken = '9126626115:AAFhdq8JuMDhYb9o36qF5uiYLRLOjlmPV20';
+    const chatIds = ['1144833390', '545995986']; 
+
+    try {
+      for (const chatId of chatIds) {
+        await fetch(`https://api.telegram.org/bot${botToken}/sendMessage`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ chat_id: chatId, text: text })
+        });
+      }
+      alert('Заявка успешно отправлена! Мы свяжемся с вами.');
+      form.reset();
+    } catch (error) {
+      console.error('Ошибка:', error);
+      alert('Произошла ошибка. Попробуйте позвонить нам.');
+    }
   });
 
   // Маска телефона
@@ -530,40 +614,69 @@
     const contractHTML = `
       <html xmlns:o='urn:schemas-microsoft-com:office:office' xmlns:w='urn:schemas-microsoft-com:office:word' xmlns='http://www.w3.org/TR/REC-html40'>
       <head><meta charset='utf-8'><title>Договор аренды</title>
-      <style>body { font-family: 'Times New Roman'; font-size: 14px; line-height: 1.5; } h2 { text-align: center; }</style>
+      <style>
+        body { font-family: 'Times New Roman'; font-size: 12pt; line-height: 1.5; }
+        h2 { text-align: center; font-size: 14pt; }
+        h3 { font-size: 12pt; margin-top: 15px; }
+        p { margin-bottom: 10px; text-align: justify; }
+        .fill-box { border: 1px dashed #000; padding: 10px; margin: 10px 0; }
+      </style>
       </head>
       <body>
         <h2>ДОГОВОР АРЕНДЫ ОБОРУДОВАНИЯ № ___</h2>
         <p style="text-align: right;">г. Минск &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; «___» _________ 20__ г.</p>
-        <p><strong>ИП Салацкий Владислав Владимирович</strong> (УНП 693462668), именуемый в дальнейшем «Арендодатель», с одной стороны, и ______________________________________________________ (ФИО/Наименование), именуемый в дальнейшем «Арендатор», с другой стороны, заключили настоящий договор о нижеследующем:</p>
         
+        <p><strong>ИП Салацкий Владислав Владимирович</strong> (УНП 693462668), действующий на основании свидетельства о государственной регистрации, именуемый в дальнейшем «Арендодатель», с одной стороны, и</p>
+        
+        <div class="fill-box">
+          <em>(Для физического лица)</em><br><br>
+          Гражданин(ка) ______________________________________________________,<br>
+          паспорт: серия ______ № ______________, выдан _________________________,<br>
+          дата выдачи _______________, адрес регистрации: ______________________________,<br>
+          телефон: _________________________
+        </div>
+
+        <div class="fill-box">
+          <em>(Для юридического лица / ИП)</em><br><br>
+          ______________________________________________________ (наименование),<br>
+          в лице ___________________________________ (должность, ФИО), действующего на основании ________________________,<br>
+          УНП: ____________________, адрес: ___________________________________,<br>
+          р/с: ________________________________ в банке _____________________________,<br>
+          телефон: _________________________
+        </div>
+
+        <p>именуемый в дальнейшем «Арендатор», с другой стороны, заключили настоящий договор о нижеследующем:</p>
+
         <h3>1. ПРЕДМЕТ ДОГОВОРА</h3>
-        <p>1.1. Арендодатель предоставляет Арендатору во временное владение и пользование кальянное оборудование, а Арендатор обязуется принять его, использовать по назначению и вернуть в исправном состоянии.</p>
-        
+        <p>1.1. Арендодатель предоставляет Арендатору во временное владение и пользование кальянное оборудование (далее — Оборудование), а Арендатор обязуется принять его, использовать по назначению и вернуть в исправном состоянии.</p>
+        <p>1.2. Перечень, количество и стоимость Оборудования: _____________________________________________________________________.</p>
+
         <h3>2. СРОК АРЕНДЫ И ПОРЯДОК РАСЧЕТОВ</h3>
-        <p>2.1. Срок аренды составляет: _______________________________.</p>
+        <p>2.1. Срок аренды составляет: с «___» _________ 20__ г. по «___» _________ 20__ г.</p>
         <p>2.2. Стоимость аренды составляет: ___________________ BYN.</p>
         <p>2.3. Оплата производится в следующем порядке: __________________________________.</p>
-        
+        <p>2.4. При необходимости вносится залоговая стоимость в размере: ___________ BYN.</p>
+
         <h3>3. ПРАВА И ОБЯЗАННОСТИ СТОРОН</h3>
         <p>3.1. Арендодатель обязуется передать Арендатору Оборудование в исправном состоянии.</p>
-        <p>3.2. Арендатор обязуется бережно относиться к Оборудованию.</p>
-        
-        <br><br>
-        <table style="width: 100%;">
+        <p>3.2. Арендатор обязуется бережно относиться к Оборудованию, не передавать его третьим лицам без согласия Арендодателя.</p>
+        <p>3.3. В случае поломки или утери Оборудования по вине Арендатора, последний возмещает полную стоимость ущерба.</p>
+
+        <h3>4. РЕКВИЗИТЫ И ПОДПИСИ СТОРОН</h3>
+        <table style="width: 100%; margin-top: 20px;">
           <tr>
-            <td>
-              <strong>АРЕНДОДАТЕЛЬ:</strong><br><br>
-              ИП Салацкий В.В.<br>
+            <td style="width: 50%; vertical-align: top;">
+              <strong>Арендодатель:</strong><br><br>
+              ИП Салацкий Владислав Владимирович<br>
               УНП: 693462668<br>
-              Тел: +375 (25) 643-96-32<br><br>
+              Тел: +375 (25) 643-96-32<br><br><br>
               ______________ / Салацкий В.В. /
             </td>
-            <td>
-              <strong>АРЕНДАТОР:</strong><br><br>
+            <td style="width: 50%; vertical-align: top;">
+              <strong>Арендатор:</strong><br><br>
               _____________________________<br>
               _____________________________<br>
-              Тел: ________________________<br><br>
+              _____________________________<br><br><br>
               ______________ / _____________ /
             </td>
           </tr>
