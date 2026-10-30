@@ -8,11 +8,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
 <style>
-  :root{
-    --bg:#0d1110; --bg-soft:#141a19; --card:#1a2120;
-    --gold:#c8a566; --gold-light:#f0dca8; --text:#f4f5f4;
-    --muted:#9ca3a1; --border:rgba(200,165,102,0.15);
-  }
+  :root{--bg:#0d1110;--bg-soft:#141a19;--card:#1a2120;--gold:#c8a566;--gold-light:#f0dca8;--text:#f4f5f4;--muted:#9ca3a1;--border:rgba(200,165,102,0.15);}
   *{margin:0;padding:0;box-sizing:border-box}
   html{scroll-behavior:smooth}
   body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);line-height:1.7;overflow-x:hidden;-webkit-font-smoothing:antialiased;}
@@ -40,6 +36,7 @@
   .burger{display:none;flex-direction:column;gap:6px;cursor:pointer}
   .burger span{width:30px;height:1px;background:var(--gold);transition:0.3s}
 
+  /* ГЛАВНЫЙ ЭКРАН */
   .hero{min-height:100vh;display:flex;align-items:center;justify-content:center;text-align:center;position:relative;background:linear-gradient(rgba(13,17,16,0.85), rgba(13,17,16,0.95)), url('https://images.unsplash.com/photo-1584242616080-2314a324f291?auto=format&fit=crop&w=1920&q=80') center/cover no-repeat;padding:150px 0 100px;overflow:hidden;}
   
   .smoke-container {position: absolute; bottom: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 1; overflow: hidden; opacity: 0.6;}
@@ -58,8 +55,7 @@
   .section-title{text-align:center;margin-bottom:60px}
   .section-title h2{font-size:clamp(2rem,4vw,3.5rem);margin-bottom:20px;font-weight:400}
   .section-title p{color:var(--muted);max-width:600px;margin-inline:auto;font-weight:300}
-
-  .info-grid{display:grid;grid-template-columns:1fr 1fr;gap:30px;}
+    .info-grid{display:grid;grid-template-columns:1fr 1fr;gap:30px;}
   .info-card{background:var(--card);border:1px solid var(--border);padding:40px;transition:.3s; text-align: left;}
   .info-card:hover{border-color:var(--gold);transform:translateY(-5px);}
   .info-card h3{font-size:1.6rem;color:var(--gold);margin-bottom:20px;}
@@ -189,7 +185,6 @@
     </div>
   </div>
 </section>
-
 <section id="delivery" style="background:var(--bg); border-bottom:1px solid var(--border);">
   <div class="container">
     <div class="section-title">
@@ -230,7 +225,7 @@
     <!-- СТАНДАРТ -->
     <div class="collection-grid active" id="col-standard">
       <div class="hookah-card">
-        <div class="hookah-image" style="background-image: url('https://images.unsplash.com/photo-1584242616080-2314a324f291?auto=format&fit=crop&w=600&q=80');"></div>
+        <div class="hookah-image" style="background-image: url('https://images.pexels.com/photos/11592811/pexels-photo-11592811.jpeg?auto=compress&cs=tinysrgb&w=600');"></div>
         <div class="hookah-info">
           <h4>Кальян Стандарт</h4>
           <p>Классика, проверенная временем. Легкая тяга и надежность.</p>
@@ -238,7 +233,7 @@
         </div>
       </div>
       <div class="hookah-card">
-        <div class="hookah-image" style="background-image: url('https://images.unsplash.com/photo-1563227812-0ea4c22e6cc8?auto=format&fit=crop&w=600&q=80');"></div>
+        <div class="hookah-image" style="background-image: url('https://images.pexels.com/photos/12703128/pexels-photo-12703128.jpeg?auto=compress&cs=tinysrgb&w=600');"></div>
         <div class="hookah-info">
           <h4>Кальян Классик</h4>
           <p>Стильный дизайн и отличная продувка. Идеальный выбор для дома.</p>
@@ -250,7 +245,7 @@
     <!-- ПРЕМИУМ -->
     <div class="collection-grid" id="col-premium">
       <div class="hookah-card">
-        <div class="hookah-image" style="background-image: url('https://images.unsplash.com/photo-1518083220123-553d6e6a1c9c?auto=format&fit=crop&w=600&q=80');"></div>
+        <div class="hookah-image" style="background-image: url('https://images.pexels.com/photos/7598304/pexels-photo-7598304.jpeg?auto=compress&cs=tinysrgb&w=600');"></div>
         <div class="hookah-info">
           <h4>Кальян Премиум</h4>
           <p>Топовый выбор. Натуральное дерево, идеальная тяга и статусный внешний вид.</p>
@@ -258,7 +253,7 @@
         </div>
       </div>
       <div class="hookah-card">
-        <div class="hookah-image" style="background-image: url('https://images.unsplash.com/photo-1594322436404-5a0526db4d13?auto=format&fit=crop&w=600&q=80');"></div>
+        <div class="hookah-image" style="background-image: url('https://images.pexels.com/photos/10815405/pexels-photo-10815405.jpeg?auto=compress&cs=tinysrgb&w=600');"></div>
         <div class="hookah-info">
           <h4>Кальян Люкс</h4>
           <p>Стекло и металл. Очень часто заказывают на стильные вечеринки.</p>
@@ -266,12 +261,13 @@
         </div>
       </div>
     </div>
-        <!-- VIP / КЕЙТЕРИНГ -->
+
+    <!-- VIP / КЕЙТЕРИНГ -->
     <div class="collection-grid" id="col-vip">
       
       <!-- Свадьбы -->
       <div class="hookah-card" style="border-color: var(--gold);">
-        <div class="hookah-image" style="background-image: url('https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=600&q=80'); height: 250px;">
+        <div class="hookah-image" style="background-image: url('https://images.pexels.com/photos/1045541/pexels-photo-1045541.jpeg?auto=compress&cs=tinysrgb&w=600'); height: 250px;">
           <div style="position: absolute; bottom: 15px; left: 20px; background: var(--bg); padding: 5px 15px; border: 1px solid var(--gold); color: var(--gold); font-size: 0.8rem; letter-spacing: 2px; text-transform: uppercase; z-index: 10;">Свадьбы</div>
         </div>
         <div class="hookah-info" style="text-align: left;">
@@ -285,10 +281,10 @@
         </div>
       </div>
 
-      <!-- Частные вечеринки (Исправлено: золотая рамка и другое фото) -->
-      <div class="hookah-card" style="border-color: var(--gold);">
-        <div class="hookah-image" style="background-image: url('https://images.unsplash.com/photo-1574615588404-8a5b19a7c538?auto=format&fit=crop&w=600&q=80'); height: 250px;">
-           <div style="position: absolute; bottom: 15px; left: 20px; background: var(--bg); padding: 5px 15px; border: 1px solid var(--gold); color: var(--gold); font-size: 0.8rem; letter-spacing: 2px; text-transform: uppercase; z-index: 10;">Вечеринки</div>
+      <!-- Вечеринки -->
+      <div class="hookah-card" style="border-color: #4a5a58;">
+        <div class="hookah-image" style="background-image: url('https://images.pexels.com/photos/1267697/pexels-photo-1267697.jpeg?auto=compress&cs=tinysrgb&w=600'); height: 250px;">
+           <div style="position: absolute; bottom: 15px; left: 20px; background: var(--bg); padding: 5px 15px; border: 1px solid #4a5a58; color: #9ca3a1; font-size: 0.8rem; letter-spacing: 2px; text-transform: uppercase; z-index: 10;">Вечеринки</div>
         </div>
         <div class="hookah-info" style="text-align: left;">
           <h4 style="text-align: left;">Вечериночный формат</h4>
@@ -315,6 +311,7 @@
       <button class="tab-btn" onclick="showPrices('rental')">Прокат без мастера</button>
     </div>
 
+    <!-- Вкладка 1: С мастером -->
     <div class="prices active" id="tab-catering">
       <div class="price-card">
         <h3>Базовый</h3>
@@ -352,6 +349,7 @@
       </div>
     </div>
 
+    <!-- Вкладка 2: Прокат (Оставляем ТОЛЬКО одну карточку за 50) -->
     <div class="prices" id="tab-rental">
       <div class="price-card" style="max-width: 600px; margin: 0 auto; grid-column: 1 / -1;">
         <h3>Прокат оборудования</h3>
@@ -427,6 +425,7 @@
     
   </div>
 </section>
+
 <footer>
   <div class="container">
     <div style="font-family:'Playfair Display',serif; font-size:1.5rem; color:var(--gold); margin-bottom:15px;">LUXE HOOKAH</div>
@@ -473,11 +472,12 @@
   burger.addEventListener('click', () => navLinks.classList.toggle('open'));
   navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => navLinks.classList.remove('open')));
 
-  // Переключение цен
+  // Переключение цен (Исправлено: скрывает карточки полностью)
   function showPrices(tabName) {
     document.querySelectorAll('.prices').forEach(el => el.style.display = 'none');
     document.querySelectorAll('.tabs-container .tab-btn').forEach(el => el.classList.remove('active'));
     
+    // Показываем нужную вкладку
     document.getElementById('tab-' + tabName).style.display = (tabName === 'catering') ? 'grid' : 'block';
     event.currentTarget.classList.add('active');
   }
