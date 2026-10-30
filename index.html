@@ -41,26 +41,42 @@
   .burger{display:none;flex-direction:column;gap:6px;cursor:pointer}
   .burger span{width:30px;height:1px;background:var(--gold);transition:0.3s}
 
-  /* ГЛАВНЫЙ ЭКРАН */
+  /* ГЛАВНЫЙ ЭКРАН С ЯРКИМ ДЫМОМ */
   .hero{min-height:100vh;display:flex;align-items:center;justify-content:center;text-align:center;position:relative;background:linear-gradient(rgba(13,17,16,0.85), rgba(13,17,16,0.95)), url('https://images.unsplash.com/photo-1584242616080-2314a324f291?auto=format&fit=crop&w=1920&q=80') center/cover no-repeat;padding:150px 0 100px;overflow:hidden;}
   
-  .smoke-container {position: absolute; bottom: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 1; overflow: hidden; opacity: 0.6;}
-  .smoke {position: absolute;bottom: -100px;background: radial-gradient(circle, rgba(200,165,102,0.4) 0%, rgba(200,165,102,0) 70%);border-radius: 50%;filter: blur(20px);animation: rise 15s infinite ease-in;}
-  .smoke:nth-child(1) { left: 10%; width: 400px; height: 400px; animation-duration: 12s; }
-  .smoke:nth-child(2) { left: 40%; width: 500px; height: 500px; animation-duration: 18s; animation-delay: 2s;}
-  .smoke:nth-child(3) { left: 70%; width: 450px; height: 450px; animation-duration: 15s; animation-delay: 4s;}
-  @keyframes rise {0% { transform: translateY(0) scale(1); opacity: 0; }10% { opacity: 1; }100% { transform: translateY(-100vh) scale(1.5); opacity: 0; }}
+  .smoke-container {position: absolute; bottom: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 1; overflow: hidden;}
+  .smoke {
+    position: absolute; bottom: -150px;
+    background: radial-gradient(circle, rgba(240,220,168,0.6) 0%, rgba(200,165,102,0.3) 40%, rgba(200,165,102,0) 70%);
+    border-radius: 50%;
+    filter: blur(35px);
+    animation: rise 12s infinite ease-in;
+  }
+  .smoke:nth-child(1) { left: 5%; width: 500px; height: 500px; animation-duration: 12s; animation-delay: 0s; }
+  .smoke:nth-child(2) { left: 25%; width: 600px; height: 600px; animation-duration: 15s; animation-delay: 2s; }
+  .smoke:nth-child(3) { left: 45%; width: 550px; height: 550px; animation-duration: 13s; animation-delay: 4s; }
+  .smoke:nth-child(4) { left: 65%; width: 700px; height: 700px; animation-duration: 18s; animation-delay: 1s; }
+  .smoke:nth-child(5) { left: 85%; width: 450px; height: 450px; animation-duration: 11s; animation-delay: 5s; }
+  
+  /* Дополнительные частицы для мобильных */
+  .smoke:nth-child(6) { left: 15%; width: 550px; height: 550px; animation-duration: 14s; animation-delay: 7s; }
+  .smoke:nth-child(7) { left: 75%; width: 600px; height: 600px; animation-duration: 16s; animation-delay: 3s; }
+
+  @keyframes rise {
+    0% { transform: translateY(0) scale(1); opacity: 0; }
+    10% { opacity: 1; }
+    80% { opacity: 0.6; }
+    100% { transform: translateY(-120vh) scale(1.8); opacity: 0; }
+  }
 
   .hero-content{max-width:800px; position: relative; z-index: 2; margin: 0 auto;}
   .hero h1{font-size:clamp(3rem,6vw,5.5rem);line-height:1.1;margin-bottom:25px;font-weight:400; text-shadow: 0 5px 15px rgba(0,0,0,0.8);}
   .hero p{font-size:1.1rem;color:var(--muted);margin-bottom:45px;font-weight:300;line-height:1.8; text-shadow: 0 2px 10px rgba(0,0,0,0.8);}
   
-  /* Карточки форматов */
   .format-card {display: flex; flex-direction: column; background: var(--card); border: 1px solid var(--border); padding: 25px 30px; border-radius: 4px; text-align: left; min-width: 280px; transition: .3s;}
   .format-card:hover {transform: translateY(-5px); border-color: var(--gold); box-shadow: 0 10px 30px rgba(0,0,0,0.3);}
   .format-card:hover span {color: var(--gold-light) !important;}
 
-  /* Анимация пульсации 24/7 */
   .pulse-badge {display: inline-block; background: rgba(200,165,102,0.15); border: 1px solid var(--gold); padding: 15px 30px; border-radius: 8px; animation: pulse 2s infinite; margin-top: 10px;}
   .pulse-badge p {margin: 0; color: var(--gold-light); font-weight: 500; font-size: 1.1rem; letter-spacing: 1px;}
   @keyframes pulse {0% { box-shadow: 0 0 0 0 rgba(200, 165, 102, 0.4); }70% { box-shadow: 0 0 0 15px rgba(200, 165, 102, 0); }100% { box-shadow: 0 0 0 0 rgba(200, 165, 102, 0); }}
@@ -162,6 +178,10 @@
     .price-card.featured{transform:none}
     .price-card.featured:hover{transform:translateY(-5px)}
     form, .contact-info{padding:30px}
+    /* На планшетах и телефонах дым остается, но частицы чуть меньше */
+    .smoke { filter: blur(25px); }
+    .smoke:nth-child(4) { display: none; }
+    .smoke:nth-child(6) { display: none; }
   }
   @media(max-width:768px){
     .nav-links{position:fixed;top:80px;left:0;right:0;background:var(--bg-soft);flex-direction:column;padding:30px;gap:20px;text-align:center;transform:translateY(-150%);transition:.4s;border-bottom:1px solid var(--border);}
@@ -170,7 +190,12 @@
     .nav .btn{display:none}
     .hero h1{font-size:2.5rem}
     section{padding:80px 0}
-    .smoke-container {display: none;}
+    /* Дым на мобильных */
+    .smoke-container { display: block; opacity: 0.7; }
+    .smoke { filter: blur(20px); }
+    .smoke:nth-child(2) { display: none; }
+    .smoke:nth-child(5) { display: none; }
+    .smoke:nth-child(7) { display: none; }
   }
 </style>
 </head>
@@ -192,6 +217,10 @@
 
 <section class="hero">
   <div class="smoke-container">
+    <div class="smoke"></div>
+    <div class="smoke"></div>
+    <div class="smoke"></div>
+    <div class="smoke"></div>
     <div class="smoke"></div>
     <div class="smoke"></div>
     <div class="smoke"></div>
@@ -341,6 +370,56 @@
     </div>
   </div>
 </section>
+<section id="prices" style="background:var(--bg-soft); border-top:1px solid var(--border); border-bottom:1px solid var(--border);">
+  <div class="container">
+    <div class="section-title">
+      <span class="subtitle">Стоимость</span>
+      <h2>Выберите свой <span class="gold-text">формат</span></h2>
+    </div>
+
+    <div class="tabs-container">
+      <button class="tab-btn active" onclick="showPrices('catering')">С мастером (под ключ)</button>
+      <button class="tab-btn" onclick="showPrices('rental')">Прокат без мастера</button>
+    </div>
+
+    <!-- Вкладка 1: С мастером -->
+    <div class="prices active" id="tab-catering">
+      <div class="price-card">
+        <h3>Базовый</h3>
+        <div class="price">от 450 <small>BYN</small></div>
+        <ul class="price-list">
+          <li>2 кальяна — 450 руб</li>
+          <li>3 кальяна — 550 руб</li>
+          <li>1 или 2 мастера (зависит от количества)</li>
+        </ul>
+        <a href="#contact" class="btn" style="width:100%;">Выбрать</a>
+      </div>
+      
+      <div class="price-card featured">
+        <h3>Популярный</h3>
+        <div class="price">от 850 <small>BYN</small></div>
+        <ul class="price-list">
+          <li>От 4 кальянов</li>
+          <li>До 6 часов работы</li>
+          <li>Индивидуальное обслуживание гостей</li>
+          <li>2 кальянных мастера</li>
+        </ul>
+        <a href="#contact" class="btn btn-solid" style="width:100%;">Выбрать</a>
+      </div>
+      
+      <div class="price-card">
+        <h3>Индивидуальный</h3>
+        <div class="price" style="font-size:2.5rem; padding-top:10px;">По запросу</div>
+        <ul class="price-list">
+          <li>Весь вечер без ограничений</li>
+          <li>Любое количество кальянов</li>
+          <li>Команда мастеров</li>
+          <li>Личный менеджер проекта</li>
+        </ul>
+        <a href="#contact" class="btn" style="width:100%;">Связаться</a>
+      </div>
+    </div>
+
     <!-- Вкладка 2: Прокат (Только одна карточка) -->
     <div class="prices" id="tab-rental">
       <div class="price-card" style="max-width: 600px; margin: 0 auto; grid-column: 1 / -1;">
@@ -371,7 +450,6 @@
     </div>
   </div>
 </section>
-
 <section class="contact-section" id="contact">
   <div class="container contact-grid">
     
@@ -418,6 +496,7 @@
     
   </div>
 </section>
+
 <footer>
   <div class="container">
     <div style="font-family:'Playfair Display',serif; font-size:1.5rem; color:var(--gold); margin-bottom:15px;">LUXE HOOKAH</div>
@@ -498,7 +577,7 @@
   burger.addEventListener('click', () => navLinks.classList.toggle('open'));
   navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => navLinks.classList.remove('open')));
 
-  // Переключение цен (Исправлено)
+  // Переключение цен
   function showPrices(tabName) {
     document.querySelectorAll('.prices').forEach(el => {
       el.style.display = 'none';
